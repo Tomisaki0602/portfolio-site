@@ -396,29 +396,6 @@ footer {
   text-align: center;
   margin-top: 100px;
 }
-footer img{
-  width: 80px;
-}
-.footer-flex{
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-}
-.footer_inner-list{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12%;
-}
-.footer_inner-list a{
-  text-decoration: none;
-  font-size: 19px;
-  color: #4e4e4e;
-}
-  footer small{
-    font-size: 14px;
-  }
 
 .eachTextAnime span {
   opacity: 0;
@@ -485,20 +462,6 @@ img::selection {
   background-color: #4e4e4e;
   color: #fff;
 }
-.footer_inner-nav{
-  margin-bottom: 35px !important;
-}
-.footer_inner-item a{
-  position: relative;
-}
-.footer_inner-item a small{
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%,0);
-  bottom: -20px;
-  white-space: nowrap;
-  font-size: 12px;
-}
 
 @media screen and (max-width: 1045px) {
   .works_box-item {
@@ -545,35 +508,25 @@ img::selection {
     padding: 0 40px;
   }
 }
-  @media screen and (max-width:860px){
-        .skills_box-list{
-        gap: 2%;
-        }
-        .skills_box-list::after{
-            content: "";
-            display: block;
-            width: 45%;
-        }
-        .skills_box-list li{
-            width: 45% !important;
-        }
+@media screen and (max-width: 860px) {
+  .skills_box-list {
+    gap: 2%;
   }
+  .skills_box-list::after {
+    content: "";
+    display: block;
+    width: 45%;
+  }
+  .skills_box-list li {
+    width: 45% !important;
+  }
+}
 @media screen and (max-width: 745px) {
   .skills_box-list {
     justify-content: center;
     row-gap: 10px;
   }
   .skills_box-list .skills_box-item {
-    width: 90% !important;
-  }
-}
-@media screen and (max-width:480px){
-  .skills_box-list{
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;;
-  }
-  .skills_box-list li{
     width: 90%;
   }
 }
@@ -715,14 +668,7 @@ img::selection {
 }
 @media screen and (max-width: 480px) {
   .footer {
-    margin-top: 80px;
-  }
-  .footer_inner-list a{
-    font-size: 16px;
-  }
-  .footer_inner-list a small{
-    font-size: 10px;
-    bottom: -15px;
+    margin-top: 180px;
   }
 }
 

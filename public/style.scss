@@ -488,6 +488,19 @@ footer{
           }
       }
   }
+  @media screen and (max-width:860px){
+    .skills_box-list{
+        gap: 2%;
+        &::after{
+            content: "";
+            display: block;
+            width: 45%;
+        }
+        li{
+            width: 45% !important;
+        }
+    }
+  }
   @media screen and (max-width:745px) {
     .skills_box-list{
         justify-content: center;
