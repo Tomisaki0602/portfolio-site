@@ -595,6 +595,9 @@ img::selection {
   white-space: nowrap;
   font-size: 12px;
 }
+.about-text .li-item{
+  display: block;
+}
 
 @media screen and (max-width: 1045px) {
   .works_box-item {
@@ -672,6 +675,12 @@ img::selection {
   .skills_box-list li{
     width: 90%;
   }
+    .about_box .about_box-text {
+        padding: 0 10px;
+    }
+    .about-text{
+      margin-bottom: 20px !important;
+    }
 }
 .works_visual {
   width: 100%;
