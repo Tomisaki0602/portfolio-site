@@ -257,6 +257,11 @@ ul.about_box-text-list {
   width: 30%;
   bottom: -10px;
 }
+@media screen and (max-width:500px){
+  .about_link {
+    margin-top: 40px;
+  }
+}
 
 .skills {
   overflow: hidden;
@@ -475,6 +480,9 @@ footer img{
     width: 43%;
     margin-bottom: 20px;
   }
+    footer small{
+      font-size: 10px;
+    }
 }
 
 .eachTextAnime span {
@@ -1136,7 +1144,7 @@ img::selection {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   backdrop-filter: blur(8px); /* 背景をぼかす */
   background: rgba(0,0,0,0.5); /* 半透明ブラック */
   transition: transform 0.8s cubic-bezier(0.77,0,0.175,1);
@@ -1150,7 +1158,7 @@ img::selection {
     display:flex;
     flex-direction: column;
     gap: 30px;
-    width: 150px;
+    width: 130px;
 }
 .drawer-nav a{
   font-size: 24px;
@@ -1159,12 +1167,16 @@ img::selection {
   position: relative;
   width: 100%;
   display: block;
+  text-align: left;
 }
 .drawer-nav a small{
   position: absolute;
   left: 0;
   bottom: -20px;
   font-size: 14px;
+  text-align: left;
+  display: block;
+  width: 100%;
 }
 
 /* 開く */
