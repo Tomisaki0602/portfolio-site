@@ -1159,6 +1159,7 @@ img::selection {
     flex-direction: column;
     gap: 30px;
     width: 130px;
+    margin-top: -40px;
 }
 .drawer-nav a{
   font-size: 24px;
