@@ -79,6 +79,19 @@ ul {
   opacity: 0.5;
   transition: 0.3s;
 }
+.drawer-nav a{
+  position: relative;
+}
+.drawer-nav a::before{
+  content: "";
+  position: absolute;
+  display: block;
+  width: 20px;
+  height: 2px;
+  border-bottom: 2px solid #fff;
+  left: -30px !important;
+  top: 30px;
+}
 
 .main {
   width: 100%;
@@ -431,6 +444,16 @@ li.skills_box-item {
   transform: rotate(-40deg);
   top: -9px;
   left: 35%;
+}
+@media screen and (min-width:1300px){
+  .about_box{
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  div#policy {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
 }
 .skills_box{
   @media screen and (max-width:500px){
@@ -855,7 +878,7 @@ img::selection {
   #barChart {
     height: 250px !important;
     width: 85% !important;
-    margin: 0 auto;
+    margin: 0 auto 10px 0;
   }
 }
 .works-arrow {
@@ -1158,7 +1181,7 @@ img::selection {
     display:flex;
     flex-direction: column;
     gap: 30px;
-    width: 130px;
+    width: 170px;
     margin-top: -40px;
 }
 .drawer-nav a{
@@ -1189,6 +1212,8 @@ img::selection {
 .drawer-nav.closing {
   transform: translateY(-100%);
 }
+
+
 @media screen and (min-width:501px) {
   .pc-none{
     display: none;
