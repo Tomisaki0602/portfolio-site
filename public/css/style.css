@@ -159,6 +159,13 @@ ul {
 .about {
   overflow: hidden;
 }
+.about_box{
+  position: relative;
+}
+.about_box h2{
+  position: absolute;
+  left: 0;
+}
 ul.about_box-text-list {
     font-size: 16px;
 }
@@ -201,6 +208,7 @@ ul.about_box-text-list {
 .about_box-text {
   margin: 0 auto;
   font-family: "area-extended", sans-serif;
+  width: 550px;
 }
 .about_box-text-name {
   font-size: 30px;

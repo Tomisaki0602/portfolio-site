@@ -1,10 +1,10 @@
 let radarChart, barChart;
 
 const radarData = {
-  labels: ['HTML', 'CSS', 'JavaScript', 'PHP', 'デザイン'],
+  labels: ['HTML', 'CSS', 'JavaScript', 'Wordpress', 'デザイン'],
   datasets: [{
     label: 'スキルレベル',
-    data: [5, 4, 2, 2, 3],
+    data: [5, 4, 2, 3, 4],
     backgroundColor: 'rgba(78, 78, 78, 0.2)',
     borderColor: '#4e4e4e',
     borderWidth: 2,
