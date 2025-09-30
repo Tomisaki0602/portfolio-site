@@ -462,6 +462,20 @@ footer img{
   footer small{
     font-size: 14px;
   }
+@media screen and (max-width:450px){
+  footer{
+    padding: 50px 0;
+  }
+  .footer_inner-list{
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0;
+  }
+  .footer_inner-list li{
+    width: 43%;
+    margin-bottom: 20px;
+  }
+}
 
 .eachTextAnime span {
   opacity: 0;
@@ -1162,6 +1176,18 @@ img::selection {
 .drawer-nav.closing {
   transform: translateY(-100%);
 }
-
+@media screen and (min-width:501px) {
+  .pc-none{
+    display: none;
+  }
+}
+@media screen and (max-width:500px){
+  .sp-none{
+    display:none;
+  }
+  .pc-none{
+    display: flex;
+  }
+}
 
 /*# sourceMappingURL=style.css.map */
