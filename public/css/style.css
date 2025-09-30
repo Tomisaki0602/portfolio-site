@@ -427,6 +427,11 @@ li.skills_box-item {
   top: -9px;
   left: 35%;
 }
+.skills_box{
+  @media screen and (max-width:500px){
+      width:90%;
+  }
+}
 
 footer {
   background: #FBFBFB;
@@ -1059,4 +1064,104 @@ img::selection {
     width: 100% !important;
     padding: 0;
   }
-}/*# sourceMappingURL=style.css.map */
+}
+
+/* ドロワーメニュー */
+/* header */
+.header {
+  position: fixed;
+  z-index: 5;
+}
+
+/* ハンバーガーボタン */
+.drawer-btn {
+  position: fixed;
+  top: 25px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #4e4e4e;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  z-index: 2001;
+  border:none;
+}
+.drawer-btn span {
+  width: 25px;
+  height: 2px;
+  background: #fff;
+  transition: 0.3s;
+}
+.drawer-btn.active {
+  background: transparent;
+  border: 2px solid #fff !important;
+}
+.drawer-btn.active-btn span:nth-child(1) {
+  transform: rotate(45deg) translate(5px,5px);
+}
+.drawer-btn.active-btn span:nth-child(2) {
+  opacity: 0;
+}
+.drawer-btn.active-btn span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px,-6px);
+}
+.drawer-btn.active-btn {
+  background: transparent;
+  border: 2px solid #fff;
+}
+
+
+/* ドロワーメニュー */
+.drawer-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(8px); /* 背景をぼかす */
+  background: rgba(0,0,0,0.5); /* 半透明ブラック */
+  transition: transform 0.8s cubic-bezier(0.77,0,0.175,1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(-100%);
+  z-index: 2000;
+}
+.drawer-nav ul{
+    display:flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 150px;
+}
+.drawer-nav a{
+  font-size: 24px;
+  text-decoration: none;
+  color: #fff;
+  position: relative;
+  width: 100%;
+  display: block;
+}
+.drawer-nav a small{
+  position: absolute;
+  left: 0;
+  bottom: -20px;
+  font-size: 14px;
+}
+
+/* 開く */
+.drawer-nav.active {
+  transform: translateY(0);
+}
+
+/* 閉じる用は .closing で管理 */
+.drawer-nav.closing {
+  transform: translateY(-100%);
+}
+
+
+/*# sourceMappingURL=style.css.map */

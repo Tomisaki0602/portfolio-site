@@ -1,20 +1,22 @@
 <body>
-
 <header class="header">
   <div class="header_inner">
-    <h1><a href="/"><img src="/images/header-img.png" alt=""></a></h1>
-    <nav class="header_inner-nav">
-      <ul class="header_inner-list">
-        <li class="header_inner-item">
-          <a href="/#about">ABOUT</a>
-        </li>
-        <li class="header_inner-item">
-          <a href="/#skills">SKILLS</a>
-        </li>
-        <li class="header_inner-item">
-          <a href="/#works">WORKS</a>
-        </li>
-      </ul>
-    </nav>
+    <h1><a href="../"><img src="/images/header-img.png" alt=""></a></h1>
   </div>
 </header>
+
+<!-- ハンバーガーボタンは header 外に配置 -->
+<button class="drawer-btn" aria-label="menu">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+
+<nav class="drawer-nav">
+  <ul>
+    <li><a href="/#about">ABOUT<small>私について</small></a></li>
+    <li><a href="/#skills">SKILLS<small>スキル</small></a></li>
+    <li><a href="/#policy">POLICY<small>大切にしていること</small></a></li>
+    <li><a href="/#works">WORKS<small>実績</small></a></li>
+  </ul>
+</nav>

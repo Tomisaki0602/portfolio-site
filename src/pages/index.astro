@@ -189,7 +189,7 @@ import Header from '../components/Header.astro';
                         <a href="/works/works-06">
                             <img src="/images/work_sp-01.jpg" alt="">
                             <div class="works_text fade-in">
-                            <span class="works_img-title">MEETIE</span>
+                            <span class="works_img-title">NITORI</span>
                             <span class="works_img-category">Application Design</span>
                             </div>
                         </a>
@@ -198,7 +198,7 @@ import Header from '../components/Header.astro';
                         <a href="/works/works-07">
                             <img src="/images/work_sp-02.jpg" alt="">
                             <div class="works_text fade-in">
-                            <span class="works_img-title">NITORI</span>
+                            <span class="works_img-title">MEETIE</span>
                             <span class="works_img-category">Application Design</span>
                             </div>
                         </a>
@@ -277,24 +277,58 @@ import Header from '../components/Header.astro';
     <script src="/js/scroll.js" type="module"></script>
     <script src="/js/graph.js" type="module"></script>
     <script src="/js/anime.js" type="module"></script>
-    <script>
+        <script>
         // フェードイン
-function showElementAnimation() {
-    var element = document.getElementsByClassName('fade-in');
-    if (!element) return;
-    var showTiming = window.innerHeight > 768 ? 200 : 60;
-    var scrollY = window.pageYOffset;
-    var windowH = window.innerHeight;
-    for (var i = 0; i < element.length; i++) {
-        var elemClientRect = element[i].getBoundingClientRect(); var elemY = scrollY + elemClientRect.top; if (scrollY + windowH - showTiming > elemY) {
-            element[i].classList.add('show');
-        } else if (scrollY + windowH < elemY) {
+        function showElementAnimation() {
+            var element = document.getElementsByClassName('fade-in');
+            if (!element) return;
+            var showTiming = window.innerHeight > 768 ? 200 : 60;
+            var scrollY = window.pageYOffset;
+            var windowH = window.innerHeight;
+            for (var i = 0; i < element.length; i++) {
+                var elemClientRect = element[i].getBoundingClientRect(); 
+                var elemY = scrollY + elemClientRect.top; 
+                if (scrollY + windowH - showTiming > elemY) {
+                    element[i].classList.add('show');
+                }
+            }
         }
-    }
-}
-showElementAnimation();
-window.addEventListener('scroll', showElementAnimation);
+        showElementAnimation();
+        window.addEventListener('scroll', showElementAnimation);
 
+        // ページトップ
+        const pagetop_btn = document.querySelector(".pagetop");
+        pagetop_btn.addEventListener("click", () => {
+            window.scroll({ top: 0, behavior: "smooth" });
+        });
     </script>
+    <script>
+        const drawerBtn = document.querySelector('.drawer-btn');
+        const drawerNav = document.querySelector('.drawer-nav');
+        const drawerLinks = drawerNav.querySelectorAll('a'); // メニュー内のリンク
+
+        // ボタンで開閉
+        drawerBtn.addEventListener('click', () => {
+            if (drawerNav.classList.contains('active')) {
+                drawerNav.classList.remove('active');
+                drawerNav.classList.add('closing');
+                drawerBtn.classList.remove('active-btn');
+            } else {
+                drawerNav.classList.add('active');
+                drawerNav.classList.remove('closing');
+                drawerBtn.classList.add('active-btn');
+            }
+        });
+
+        // メニュー内リンククリックで閉じる
+        drawerLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                drawerNav.classList.remove('active');
+                drawerNav.classList.add('closing');
+                drawerBtn.classList.remove('active-btn');
+            });
+        });
+    </script>
+
 </body>
 </html>
