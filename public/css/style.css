@@ -469,6 +469,9 @@ li.skills_box-item {
   }
 }
 
+.top_footer{
+  margin-top: 0 !important;
+}
 footer {
   background: #FBFBFB;
   padding: 50px;
@@ -498,6 +501,47 @@ footer img{
   footer small{
     font-size: 14px;
   }
+  .pf_btn img{
+    width: 140px;
+  }
+  .pf_btn{
+    text-align: center;
+    margin-top: 40px;
+  }
+  .pf_btn h3{
+  margin-bottom: 0;
+  }
+ .pf_btn small{
+  font-size: 16px;
+  margin-bottom: 30px;
+  }
+ .pf_btn .pdf_link{
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: center;
+  width: 100%;
+  border-top:0,5px solid #4e4e4e;
+  border-bottom:0.5px solid #4e4e4e;
+  margin-top: 20px;
+  }
+ .pf_btn .pdf_link  > div{
+  width: 50%;
+  border:0.5px solid #4e4e4e
+ }
+  .pf_btn .pdf_link  > div a{
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    color: #fff;
+    text-decoration: none;
+    border-right: 1px solid #4e4e4e;
+    background: #4e4e4e;
+  }
+
 @media screen and (max-width:450px){
   footer{
     padding: 50px 0;
