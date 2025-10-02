@@ -1,5 +1,5 @@
 ---
-import HeaderWork from '../../components/HeaderWork.astro';
+import Header from '../components/HeaderWork.astro';
 import Footer from '../components/Footer.astro';
 ---
 
@@ -50,11 +50,11 @@ import Footer from '../components/Footer.astro';
     </script>
 </head>
 
-    <HeaderWork />
+<HeaderWork />
 
     <main class="main">
 <div class="form-container">
-<form id="contact-form" action="https://formspree.io/f/xrbykpjj" method="POST">
+<form id="contact-form">
   <h2>お問い合わせフォーム</h2>
 
   <label for="name">※名前(会社名)</label>
@@ -123,55 +123,83 @@ import Footer from '../components/Footer.astro';
         });
     </script>
 
-        <script>
- document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("contact-form");
-  const inputs = Array.from(form.querySelectorAll("input, select, textarea"));
+    <script>
+   const form = document.getElementById("contact-form");
+const nameInput = document.getElementById("name");
+const telInput = document.getElementById("tel");
+const emailInput = document.getElementById("email");
+const typeInput = document.getElementById("type");
+const messageInput = document.getElementById("message");
 
-  // スマホで入力時のズーム防止
-  inputs.forEach(el => el.style.fontSize = "16px");
+const errorName = document.getElementById("error-name");
+const errorTel = document.getElementById("error-tel");
+const errorEmail = document.getElementById("error-email");
+const errorType = document.getElementById("error-type");
+const errorMessage = document.getElementById("error-message");
 
-  // 各 input にリアルタイムバリデーション表示
-  inputs.forEach(input => {
-    input.addEventListener("input", () => {
-      const errorEl = input.nextElementSibling;
-      if (errorEl && errorEl.classList.contains("error-msg")) {
-        errorEl.remove();
-      }
-    });
-  });
+// リアルタイムバリデーション
+function validateName() {
+  const value = nameInput.value.trim();
+  if (value.length === 0) return "名前を入力してください";
+  if (value.length > 50) return "50文字以内で入力してください";
+  return "";
+}
 
-  form.addEventListener("submit", function(e) {
-    e.preventDefault(); // フォーム送信はしない
+function validateTel() {
+  const value = telInput.value.trim();
+  if (value && !/^\d{10,11}$/.test(value)) return "電話番号は10〜11桁の数字で入力してください";
+  return "";
+}
 
-    let allValid = true;
+function validateEmail() {
+  const value = emailInput.value.trim();
+  const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!pattern.test(value)) return "有効なメールアドレスを入力してください";
+  return "";
+}
 
-    // バリデーションチェック
-    inputs.forEach(input => {
-      const errorEl = input.nextElementSibling;
-      if (errorEl && errorEl.classList.contains("error-msg")) errorEl.remove();
+function validateType() {
+  if (typeInput.value === "") return "種別を選択してください";
+  return "";
+}
 
-      if (!input.checkValidity()) {
-        allValid = false;
-        const msg = document.createElement("div");
-        msg.classList.add("error-msg");
-        msg.style.color = "red";
-        msg.style.fontSize = "0.9em";
-        msg.textContent = input.validationMessage;
-        input.after(msg);
-      }
-    });
+function validateMessage() {
+  const value = messageInput.value.trim();
+  if (value.length === 0) return "お問い合わせ内容を入力してください";
+  if (value.length > 1000) return "1000文字以内で入力してください";
+  return "";
+}
 
-    if (!allValid) return; // エラーあれば次の処理はしない
+// イベントリスナーでリアルタイム更新
+nameInput.addEventListener("input", () => errorName.textContent = validateName());
+telInput.addEventListener("input", () => errorTel.textContent = validateTel());
+emailInput.addEventListener("input", () => errorEmail.textContent = validateEmail());
+typeInput.addEventListener("change", () => errorType.textContent = validateType());
+messageInput.addEventListener("input", () => errorMessage.textContent = validateMessage());
 
-    // 次の input に自動移動（最後の input は移動なし）
-    const currentIndex = inputs.findIndex(input => input === document.activeElement);
-    const nextIndex = currentIndex + 1;
-    if (nextIndex < inputs.length) {
-      inputs[nextIndex].focus();
-    }
-  });
+// 送信時にもチェック
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  let isValid = true;
+
+  errorName.textContent = validateName();
+  errorTel.textContent = validateTel();
+  errorEmail.textContent = validateEmail();
+  errorType.textContent = validateType();
+  errorMessage.textContent = validateMessage();
+
+  if (errorName.textContent) isValid = false;
+  if (errorTel.textContent) isValid = false;
+  if (errorEmail.textContent) isValid = false;
+  if (errorType.textContent) isValid = false;
+  if (errorMessage.textContent) isValid = false;
+
+  if (isValid) {
+    // ここで Formspree や Google Apps Script 送信処理を呼ぶ
+    console.log("送信可能です");
+  }
 });
+
     </script>
 
 </body>
