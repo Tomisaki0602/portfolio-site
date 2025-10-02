@@ -50,7 +50,7 @@ import Footer from '../components/Footer.astro';
     </script>
 </head>
 
-
+<Header />
 
     <main class="main">
 <div class="form-container">
@@ -89,7 +89,7 @@ import Footer from '../components/Footer.astro';
 
     </main>
 
-
+    <Footer />
    
     <script>
 document.getElementById("contact-form").addEventListener("submit", async function(e) {
@@ -121,6 +121,7 @@ document.getElementById("contact-form").addEventListener("submit", async functio
     alert("送信に失敗しました: " + err.message);
   }
 });
+<script>
 
 </body>
 </html>
