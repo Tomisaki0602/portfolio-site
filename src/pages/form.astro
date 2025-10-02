@@ -91,37 +91,7 @@ import Footer from '../components/Footer.astro';
 
     <Footer />
    
-    <script>
-document.getElementById("contact-form").addEventListener("submit", async function(e) {
-  e.preventDefault(); // フォーム送信を止める
-
-  const formData = {
-    name: document.getElementById("name").value,
-    tel: document.getElementById("tel").value,
-    email: document.getElementById("email").value,
-    type: document.getElementById("type").value,
-    message: document.getElementById("message").value
-  };
-
-  try {
-    const response = await fetch("https://script.google.com/macros/s/AKfycbwWN5iyvLXAfzxjcLGSPqEgd4Q3DyYcmL1gMiVYgvksqPHLNqSqHJ6bwGAYcPUe2b8IFg/exec", {
-      method: "POST",
-      body: JSON.stringify(formData),
-      headers: { "Content-Type": "application/json" }
-    });
-
-    const result = await response.json();
-    if (result.result === "success") {
-      alert("送信完了！");
-      document.getElementById("contact-form").reset();
-    } else {
-      alert("送信エラー: " + result.error);
-    }
-  } catch (err) {
-    alert("送信に失敗しました: " + err.message);
-  }
-});
-<script>
+    
 
 </body>
 </html>
