@@ -54,37 +54,35 @@ import Footer from '../components/Footer.astro';
 
     <main class="main">
 <div class="form-container">
-    <form action="https://formspree.io/f/xrbykpjj" method="POST" id="contact-form">
-      <h2>お問い合わせフォーム</h2>
-      <label for="name"><span class="required">※</span>名前(会社名)</label>
-       <input type="tel" id="name" name="name" autocomplete="name" placeholder="例：山田 太郎 / 株式会社〇〇" required>
+  <form id="contact-form">
+    <h2>お問い合わせフォーム</h2>
 
-      <label for="name">お電話番号</label>
-      <input type="text" id="tel" name="tel" autocomplete="tel" placeholder="例：000-1234-5678">
+    <label for="name">※名前(会社名)</label>
+    <input type="text" id="name" name="name" placeholder="例：山田 太郎 / 株式会社〇〇" required autocomplete="name">
 
-      <label for="email"><span class="required">※</span>メールアドレス</label>
-      <input type="email" id="email" name="email" autocomplete="email" placeholder="example@mail.com" required>
+    <label for="tel">お電話番号</label>
+    <input type="text" id="tel" name="tel" placeholder="例：000-1234-5678" autocomplete="tel">
 
-      <label for="type"><span class="required">※</span>種別</label>
-      <select id="type" name="type" required>
-        <option value="">選択してください</option>
-        <option value="制作依頼">制作依頼</option>
-        <option value="見積もり相談">見積もり相談</option>
-        <option value="その他(オファーなど)">その他(オファーなど)</option>
-      </select>
+    <label for="email">※メールアドレス</label>
+    <input type="email" id="email" name="email" placeholder="example@mail.com" required autocomplete="email">
 
-      <label for="message"><span class="required">※</span>お問合せ内容</label>
-      <textarea id="message" name="message" placeholder="お問い合わせ内容をご記入ください" rows="5" required></textarea>
+    <label for="type">※種別</label>
+    <select id="type" name="type" required>
+      <option value="">選択してください</option>
+      <option value="制作依頼">制作依頼</option>
+      <option value="見積もり相談">見積もり相談</option>
+      <option value="その他(オファーなど)">その他(オファーなど)</option>
+    </select>
 
-      <div class="submit-container">
-        <button type="submit">送信</button>
-      </div>
+    <label for="message">※お問い合わせ内容</label>
+    <textarea id="message" name="message" placeholder="お問い合わせ内容をご記入ください" rows="5" required></textarea>
 
-      <p class="form-note">
-        ※入力いただいた内容はお問い合わせ対応のみに使用し、その他の目的で利用することはありません。
-      </p>
+    <button type="submit">送信</button>
 
-    </form>
+    <p class="form-note">
+      ※入力いただいた内容はお問い合わせ対応のみに使用します。
+    </p>
+  </form>
 </div>
 
     </main>
@@ -118,6 +116,40 @@ import Footer from '../components/Footer.astro';
             });
         });
     </script>
+
+    <script>
+const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbwWN5iyvLXAfzxjcLGSPqEgd4Q3DyYcmL1gMiVYgvksqPHLNqSqHJ6bwGAYcPUe2b8IFg/exec";
+
+document.getElementById("contact-form").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const formData = {
+    name: document.getElementById("name").value,
+    tel: document.getElementById("tel").value,
+    email: document.getElementById("email").value,
+    type: document.getElementById("type").value,
+    message: document.getElementById("message").value
+  };
+
+  try {
+    const response = await fetch(WEBAPP_URL, {
+      method: "POST",
+      body: JSON.stringify(formData),
+      headers: { "Content-Type": "application/json" }
+    });
+
+    const result = await response.json();
+    if (result.result === "success") {
+      alert("送信完了！");
+      document.getElementById("contact-form").reset();
+    } else {
+      alert("送信エラー: " + result.error);
+    }
+  } catch (err) {
+    alert("送信に失敗しました: " + err.message);
+  }
+});
+</script>
    
     
 
