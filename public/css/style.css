@@ -1298,6 +1298,12 @@ img::selection {
   background-color: #ffffff;
   border-radius: 8px;
 }
+@media screen and (max-width:480px){
+  .form-container{
+    max-width: inherit;
+    width: 90%;
+  }
+}
 
 /* 見出し */
 .form-container h2 {
