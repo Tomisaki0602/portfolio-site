@@ -1,39 +1,3 @@
----
-const handleSubmit = async (event) => {
-  event.preventDefault(); // ここでページリロードを防ぐ
-
-  const form = event.target;
-
-  const data = {
-    name: form.name.value,
-    email: form.email.value,
-    type: form.type ? form.type.value : "HP問い合わせ", // type があれば取得
-    message: form.message.value
-  };
-
-  try {
-    const res = await fetch('/api/contact', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json; charset=UTF-8' },
-      body: JSON.stringify(data)
-    });
-
-    // サーバーが JSON を返していなければここでエラーになる
-    const result = await res.json();
-
-    if (res.ok) {
-      alert(result.message || '送信成功！');
-      form.reset();
-    } else {
-      alert(result.message || '送信に失敗しました');
-    }
-  } catch (err) {
-    console.error(err);
-    alert('送信中にエラーが発生しました');
-  }
-};
----
-
 <html lang="ja">
   <head>
     <meta charset="UTF-8">
@@ -41,7 +5,8 @@ const handleSubmit = async (event) => {
   </head>
   <body>
     <h1>お問い合わせフォーム</h1>
-    <form id="contactForm" on:submit={handleSubmit}>
+
+    <form id="contactForm">
       <label>
         名前 (必須)
         <input type="text" name="name" required>
@@ -67,5 +32,7 @@ const handleSubmit = async (event) => {
       <br>
       <button type="submit">送信</button>
     </form>
+
+    <script type="module" src="/contact.js"></script>
   </body>
 </html>
