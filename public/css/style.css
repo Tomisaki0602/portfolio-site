@@ -340,6 +340,11 @@ li.skills_box-item {
   overflow: hidden;
   margin-top: 100px;
 }
+.nitori{
+  width: 90%;
+  text-align: center;
+  margin:0 auto;
+}
 .works_title {
   text-align: center;
   margin-bottom: 30px;
