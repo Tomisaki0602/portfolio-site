@@ -11,4 +11,33 @@
   <button type="submit">送信</button>
 </form>
 
-<script type="module" src="/contact.js"></script>
+<script type="module">
+  const form = document.getElementById('contact-form');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = {
+      name: form.name.value,
+      email: form.email.value,
+      type: form.type.value,
+      message: form.message.value
+    };
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      const resData = await res.json();
+      if (res.ok) {
+        alert('送信成功');
+        form.reset();
+      } else {
+        alert('送信失敗: ' + resData.error);
+      }
+    } catch (err) {
+      alert('送信中にエラーが発生しました');
+      console.error(err);
+    }
+  });
+</script>

@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
-import vercel from '@astrojs/vercel'; // ← /server は不要
+import vercel from '@astrojs/vercel'; // ← これだけでOK
 
 export default defineConfig({
-  output: 'server', // SSR/API Routes 有効化
+  output: 'server', // SSR 前提
   adapter: vercel(),
 });
