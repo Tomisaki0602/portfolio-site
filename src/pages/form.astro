@@ -141,6 +141,34 @@ import Footer from '../components/Footer.astro';
     <script src="/js/scroll.js" type="module"></script>
     <script src="/js/graph.js" type="module"></script>
     <script>
+function doPost(e) {
+  try {
+    var sheet = SpreadsheetApp.openById("1xvzLc4e7RDOK3pJv8I5O5JaegkGdciqkEjCuhXcp0jw");
+    var ws = sheet.getSheetByName("シート1");
+
+    var data = JSON.parse(e.postData.contents);
+
+    ws.appendRow([
+      new Date(),
+      data.name,
+      data.tel,
+      data.email,
+      data.type,
+      data.message
+    ]);
+
+    return ContentService.createTextOutput(
+      JSON.stringify({ result: "success" })
+    ).setMimeType(ContentService.MimeType.JSON);
+
+  } catch (error) {
+    return ContentService.createTextOutput(
+      JSON.stringify({ result: "error", error: error.toString() })
+    ).setMimeType(ContentService.MimeType.JSON);
+  }
+}
+</script>
+    <script>
         const drawerBtn = document.querySelector('.drawer-btn');
         const drawerNav = document.querySelector('.drawer-nav');
         const drawerLinks = drawerNav.querySelectorAll('a'); // メニュー内のリンク
