@@ -1417,7 +1417,7 @@ img::selection {
 .required{
   color: red;
 }
-.error {
+.error-message {
   color: red;
   font-size: 0.9em;
   margin-top: -20px;
