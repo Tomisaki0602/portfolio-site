@@ -1419,7 +1419,8 @@ img::selection {
 .error {
   color: red;
   font-size: 0.9em;
-  margin-top: 2px;
+  margin-top: -20px;
+  margin-bottom: 20px;
   display: block;
 }
 
