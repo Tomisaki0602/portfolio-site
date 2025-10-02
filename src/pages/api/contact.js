@@ -1,11 +1,29 @@
-export default async function handler(req, res) {
-  if (req.method !== 'POST') return res.status(405).json({ message: 'Method not allowed' });
+import { createClient } from '@supabase/supabase-js';
 
-  const { name, email, message } = req.body;
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_ANON_KEY;
+const supabase = createClient(supabaseUrl, supabaseKey);
 
-  console.log('フォーム送信:', { name, email, message });
+export async function post({ request }) {
+  try {
+    const body = await request.json();
+    const { name, email, type, message } = body;
 
-  // TODO: メール送信やデータベース保存処理をここに追加
+    const { data, error } = await supabase
+      .from('contacts')  // Supabase のテーブル名
+      .insert([{ name, email, type, message }]);
 
-  return res.status(200).json({ message: '送信成功！' });
+    if (error) throw error;
+
+    return new Response(JSON.stringify({ message: '送信成功！' }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json; charset=UTF-8' }
+    });
+  } catch (err) {
+    console.error(err);
+    return new Response(JSON.stringify({ message: '保存に失敗しました', error: err.message }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json; charset=UTF-8' }
+    });
+  }
 }
