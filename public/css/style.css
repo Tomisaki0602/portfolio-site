@@ -1359,6 +1359,7 @@ img::selection {
   cursor: pointer;
   transition: background-color 0.3s ease;
   width: 70%;
+  margin: 0 auto;
 }
 
 .form-container button[type="submit"]:hover {
@@ -1410,7 +1411,7 @@ img::selection {
 
   .form-container button[type="submit"] {
     padding: 10px;
-    font-size: 0.95em;
+    font-size: 1.2em;
   }
 }
 .required{
