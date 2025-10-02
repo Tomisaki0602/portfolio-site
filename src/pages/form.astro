@@ -61,7 +61,8 @@ import Footer from '../components/Footer.astro';
     <input type="text" id="name" name="name" placeholder="例：山田 太郎 / 株式会社〇〇" required autocomplete="name">
 
     <label for="tel">お電話番号</label>
-    <input type="text" id="tel" name="tel" placeholder="例：000-1234-5678" autocomplete="tel">
+    <input type="text" id="tel" name="tel" placeholder="例：000-1234-5678" autocomplete="tel" maxlength="11">
+    <small>※-はなしで入力してください</small>
 
     <label for="email">※メールアドレス</label>
     <input type="email" id="email" name="email" placeholder="example@mail.com" required autocomplete="email">
@@ -118,40 +119,48 @@ import Footer from '../components/Footer.astro';
     </script>
 
     <script>
-const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbwWN5iyvLXAfzxjcLGSPqEgd4Q3DyYcmL1gMiVYgvksqPHLNqSqHJ6bwGAYcPUe2b8IFg/exec";
+    document.getElementById("contact-form").addEventListener("submit", function(e) {
+  e.preventDefault(); // フォーム送信を止める
 
-document.getElementById("contact-form").addEventListener("submit", async function(e) {
-  e.preventDefault();
+  const name = document.getElementById("name").value.trim();
+  const tel = document.getElementById("tel").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const type = document.getElementById("type").value;
+  const message = document.getElementById("message").value.trim();
 
-  const formData = {
-    name: document.getElementById("name").value,
-    tel: document.getElementById("tel").value,
-    email: document.getElementById("email").value,
-    type: document.getElementById("type").value,
-    message: document.getElementById("message").value
-  };
+  // 名前チェック
+  if (name.length === 0 || name.length > 50) {
+    alert("名前は1文字以上50文字以内で入力してください");
+    return;
+  }
 
-  try {
-    const response = await fetch(WEBAPP_URL, {
-      method: "POST",
-      body: JSON.stringify(formData),
-      headers: { "Content-Type": "application/json" }
-    });
+  // 電話番号チェック（数字のみ、10〜11桁）
+  if (tel && !/^\d{10,11}$/.test(tel)) {
+    alert("電話番号は数字のみ、10〜11桁で入力してください");
+    return;
+  }
 
-    const result = await response.json();
-    if (result.result === "success") {
-      alert("送信完了！");
-      document.getElementById("contact-form").reset();
-    } else {
-      alert("送信エラー: " + result.error);
-    }
-  } catch (err) {
-    alert("送信に失敗しました: " + err.message);
+  // メールチェック
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailPattern.test(email)) {
+    alert("有効なメールアドレスを入力してください");
+    return;
+  }
+
+  // 種別チェック
+  if (type === "") {
+    alert("種別を選択してください");
+    return;
+  }
+
+  // メッセージチェック
+  if (message.length === 0 || message.length > 1000) {
+    alert("お問い合わせ内容は1文字以上1000文字以内で入力してください");
+    return;
   }
 });
-</script>
-   
-    
+
+    </script>
 
 </body>
 </html>
