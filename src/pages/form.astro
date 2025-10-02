@@ -54,36 +54,41 @@ import Footer from '../components/Footer.astro';
 
     <main class="main">
 <div class="form-container">
-  <form id="contact-form">
-    <h2>お問い合わせフォーム</h2>
+<form id="contact-form">
+  <h2>お問い合わせフォーム</h2>
 
-    <label for="name">※名前(会社名)</label>
-    <input type="text" id="name" name="name" placeholder="例：山田 太郎 / 株式会社〇〇" required autocomplete="name">
+  <label for="name">※名前(会社名)</label>
+  <input type="text" id="name" name="name" placeholder="例：山田 太郎 / 株式会社〇〇" required autocomplete="name">
+  <span class="error" id="error-name"></span>
 
-    <label for="tel">お電話番号</label>
-    <input type="text" id="tel" name="tel" placeholder="例：000-1234-5678" autocomplete="tel" maxlength="11">
-    <small>※-はなしで入力してください</small>
+  <label for="tel">お電話番号</label>
+  <input type="text" id="tel" name="tel" placeholder="例：00012345678" autocomplete="tel" maxlength="11">
+  <span class="error" id="error-tel"></span>
 
-    <label for="email">※メールアドレス</label>
-    <input type="email" id="email" name="email" placeholder="example@mail.com" required autocomplete="email">
+  <label for="email">※メールアドレス</label>
+  <input type="email" id="email" name="email" placeholder="example@mail.com" required autocomplete="email">
+  <span class="error" id="error-email"></span>
 
-    <label for="type">※種別</label>
-    <select id="type" name="type" required>
-      <option value="">選択してください</option>
-      <option value="制作依頼">制作依頼</option>
-      <option value="見積もり相談">見積もり相談</option>
-      <option value="その他(オファーなど)">その他(オファーなど)</option>
-    </select>
+  <label for="type">※種別</label>
+  <select id="type" name="type" required>
+    <option value="">選択してください</option>
+    <option value="制作依頼">制作依頼</option>
+    <option value="見積もり相談">見積もり相談</option>
+    <option value="その他(オファーなど)">その他(オファーなど)</option>
+  </select>
+  <span class="error" id="error-type"></span>
 
-    <label for="message">※お問い合わせ内容</label>
-    <textarea id="message" name="message" placeholder="お問い合わせ内容をご記入ください" rows="5" required></textarea>
+  <label for="message">※お問い合わせ内容</label>
+  <textarea id="message" name="message" placeholder="お問い合わせ内容をご記入ください" rows="5" required></textarea>
+  <span class="error" id="error-message"></span>
 
-    <button type="submit">送信</button>
+  <button type="submit">送信</button>
 
-    <p class="form-note">
-      ※入力いただいた内容はお問い合わせ対応のみに使用します。
-    </p>
-  </form>
+  <p class="form-note">
+    ※入力いただいた内容はお問い合わせ対応のみに使用します。
+  </p>
+</form>
+
 </div>
 
     </main>
@@ -116,6 +121,85 @@ import Footer from '../components/Footer.astro';
                 drawerBtn.classList.remove('active-btn');
             });
         });
+    </script>
+
+    <script>
+   const form = document.getElementById("contact-form");
+const nameInput = document.getElementById("name");
+const telInput = document.getElementById("tel");
+const emailInput = document.getElementById("email");
+const typeInput = document.getElementById("type");
+const messageInput = document.getElementById("message");
+
+const errorName = document.getElementById("error-name");
+const errorTel = document.getElementById("error-tel");
+const errorEmail = document.getElementById("error-email");
+const errorType = document.getElementById("error-type");
+const errorMessage = document.getElementById("error-message");
+
+// リアルタイムバリデーション
+function validateName() {
+  const value = nameInput.value.trim();
+  if (value.length === 0) return "名前を入力してください";
+  if (value.length > 50) return "50文字以内で入力してください";
+  return "";
+}
+
+function validateTel() {
+  const value = telInput.value.trim();
+  if (value && !/^\d{10,11}$/.test(value)) return "電話番号は10〜11桁の数字で入力してください";
+  return "";
+}
+
+function validateEmail() {
+  const value = emailInput.value.trim();
+  const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!pattern.test(value)) return "有効なメールアドレスを入力してください";
+  return "";
+}
+
+function validateType() {
+  if (typeInput.value === "") return "種別を選択してください";
+  return "";
+}
+
+function validateMessage() {
+  const value = messageInput.value.trim();
+  if (value.length === 0) return "お問い合わせ内容を入力してください";
+  if (value.length > 1000) return "1000文字以内で入力してください";
+  return "";
+}
+
+// イベントリスナーでリアルタイム更新
+nameInput.addEventListener("input", () => errorName.textContent = validateName());
+telInput.addEventListener("input", () => errorTel.textContent = validateTel());
+emailInput.addEventListener("input", () => errorEmail.textContent = validateEmail());
+typeInput.addEventListener("change", () => errorType.textContent = validateType());
+messageInput.addEventListener("input", () => errorMessage.textContent = validateMessage());
+
+// 送信時にもチェック
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  let isValid = true;
+
+  errorName.textContent = validateName();
+  errorTel.textContent = validateTel();
+  errorEmail.textContent = validateEmail();
+  errorType.textContent = validateType();
+  errorMessage.textContent = validateMessage();
+
+  if (errorName.textContent) isValid = false;
+  if (errorTel.textContent) isValid = false;
+  if (errorEmail.textContent) isValid = false;
+  if (errorType.textContent) isValid = false;
+  if (errorMessage.textContent) isValid = false;
+
+  if (isValid) {
+    // ここで Formspree や Google Apps Script 送信処理を呼ぶ
+    console.log("送信可能です");
+  }
+});
+
     </script>
 
 </body>
