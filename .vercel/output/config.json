@@ -1,0 +1,79 @@
+{
+	"version": 3,
+	"routes": [
+		{
+			"handle": "filesystem"
+		},
+		{
+			"src": "^/_astro/(.*)$",
+			"headers": {
+				"cache-control": "public, max-age=31536000, immutable"
+			},
+			"continue": true
+		},
+		{
+			"src": "^/_server-islands/([^/]+?)/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/_image/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/api/contact/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/form/form/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/works/works-01/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/works/works-02/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/works/works-03/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/works/works-04/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/works/works-05/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/works/works-06/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/works/works-07/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/works/works-08/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/works/works-09/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/works/works-10/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/works/works-11/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/$",
+			"dest": "_render"
+		}
+	]
+}
