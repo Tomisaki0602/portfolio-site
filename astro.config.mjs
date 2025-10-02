@@ -1,7 +1,7 @@
-// @ts-check
 import { defineConfig } from 'astro/config';
+import vercel from '@astrojs/vercel/server'; // SSR 用
 
-// https://astro.build/config
 export default defineConfig({
-  output: 'server', // server または hybrid にする
+  output: 'server',      // API Routes を有効化
+  adapter: vercel(),
 });
