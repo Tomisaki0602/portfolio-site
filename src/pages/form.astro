@@ -59,15 +59,15 @@ import Footer from '../components/Footer.astro';
 
   <label for="name">※名前(会社名)</label>
   <input type="text" id="name" name="name" placeholder="例：山田 太郎 / 株式会社〇〇" required autocomplete="name">
-  <span class="error" id="error-name"></span>
+  <div class="error-msg"></div>
 
   <label for="tel">お電話番号</label>
   <input type="text" id="tel" name="tel" placeholder="例：00012345678" autocomplete="tel" maxlength="11">
-  <span class="error" id="error-tel"></span>
+  <div class="error-msg"></div>
 
   <label for="email">※メールアドレス</label>
   <input type="email" id="email" name="email" placeholder="example@mail.com" required autocomplete="email">
-  <span class="error" id="error-email"></span>
+  <div class="error-msg"></div>
 
   <label for="type">※種別</label>
   <select id="type" name="type" required>
@@ -76,12 +76,11 @@ import Footer from '../components/Footer.astro';
     <option value="見積もり相談">見積もり相談</option>
     <option value="その他(オファーなど)">その他(オファーなど)</option>
   </select>
-  <span class="error" id="error-type"></span>
+  <div class="error-msg"></div>
 
   <label for="message">※お問い合わせ内容</label>
   <textarea id="message" name="message" placeholder="お問い合わせ内容をご記入ください" rows="5" required></textarea>
-  <span class="error" id="error-message"></span>
-
+  <div class="error-msg"></div>
   <button type="submit">送信</button>
 
   <p class="form-note">
@@ -141,39 +140,59 @@ import Footer from '../components/Footer.astro';
     });
   });
 
-  form.addEventListener("submit", function(e) {
-    e.preventDefault(); // フォーム送信はしない
+const form = document.getElementById("contact-form");
+const inputs = Array.from(form.querySelectorAll("input, select, textarea"));
 
-    let allValid = true;
+form.addEventListener("submit", function(e) {
+  e.preventDefault(); // 送信は行わない
 
-    // バリデーションチェック
-    inputs.forEach(input => {
-      const errorEl = input.nextElementSibling;
-      if (errorEl && errorEl.classList.contains("error-msg")) errorEl.remove();
+  let allValid = true;
 
-      if (!input.checkValidity()) {
-        allValid = false;
-        const msg = document.createElement("div");
-        msg.classList.add("error-msg");
-        msg.style.color = "red";
-        msg.style.fontSize = "0.9em";
-        msg.textContent = input.validationMessage;
-        input.after(msg);
-      }
-    });
+  inputs.forEach(input => {
+    const errorEl = input.nextElementSibling; // 各 input の下にある .error-msg
+    errorEl.textContent = ""; // 前のエラーを消す
 
-    if (!allValid) return; // エラーあれば次の処理はしない
-
-    // 次の input に自動移動（最後の input は移動なし）
-    const currentIndex = inputs.findIndex(input => input === document.activeElement);
-    const nextIndex = currentIndex + 1;
-    if (nextIndex < inputs.length) {
-      inputs[nextIndex].focus();
+    // 名前
+    if (input.id === "name" && input.value.trim() === "") {
+      errorEl.textContent = "名前(会社名)を入力してください";
+      allValid = false;
     }
 
-    // ここで送信処理はなし
-    console.log("送信処理はなし、バリデーションOKです");
+    // 電話番号（任意だけど入力されていれば数字のみ）
+    if (input.id === "tel" && input.value.trim() !== "" && !/^\d{10,11}$/.test(input.value)) {
+      errorEl.textContent = "電話番号は数字10〜11桁で入力してください（ハイフンなし）";
+      allValid = false;
+    }
+
+    // メール
+    if (input.id === "email" && input.value.trim() === "") {
+      errorEl.textContent = "メールアドレスを入力してください";
+      allValid = false;
+    } else if (input.id === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
+      errorEl.textContent = "正しいメールアドレスの形式で入力してください";
+      allValid = false;
+    }
+
+    // 種別
+    if (input.id === "type" && input.value === "") {
+      errorEl.textContent = "種別を選択してください";
+      allValid = false;
+    }
+
+    // メッセージ
+    if (input.id === "message" && input.value.trim() === "") {
+      errorEl.textContent = "お問い合わせ内容を入力してください";
+      allValid = false;
+    }
   });
+
+  if (allValid) {
+    // ここで送信処理（今回はなし）
+    console.log("バリデーションOK。送信処理ここに入れる");
+  }
+});
+
+
 });
 
     </script>
