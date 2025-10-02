@@ -123,7 +123,7 @@ import Footer from '../components/Footer.astro';
         });
     </script>
 
-    <script>
+        <script>
  document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("contact-form");
   const inputs = Array.from(form.querySelectorAll("input, select, textarea"));
@@ -170,12 +170,8 @@ import Footer from '../components/Footer.astro';
     if (nextIndex < inputs.length) {
       inputs[nextIndex].focus();
     }
-
-    // ここで送信処理はなし
-    console.log("送信処理はなし、バリデーションOKです");
   });
 });
-
     </script>
 
 </body>
