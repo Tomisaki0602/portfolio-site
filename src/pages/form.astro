@@ -1,5 +1,5 @@
 ---
-import Header from '../components/Header.astro';
+import Header from '../components/HeaderWork.astro';
 import Footer from '../components/Footer.astro';
 ---
 
@@ -50,26 +50,26 @@ import Footer from '../components/Footer.astro';
     </script>
 </head>
 
-<Header />
+<HeaderWork />
 
     <main class="main">
 <div class="form-container">
 <form id="contact-form" action="https://formspree.io/f/xrbykpjj" method="POST">
   <h2>お問い合わせフォーム</h2>
 
-  <label for="name">※名前(会社名)</label>
+  <label for="name"><span class="required ">※</span>名前(会社名)</label>
   <input type="text" id="name" name="name" placeholder="例：山田 太郎 / 株式会社〇〇" required autocomplete="name">
   <div class="error-msg"></div>
 
   <label for="tel">お電話番号</label>
-  <input type="text" id="tel" name="tel" placeholder="例：00012345678" autocomplete="tel" maxlength="11">
+  <input type="text" id="tel" name="tel" placeholder="例：00012345678" autocomplete="tel" maxlength="11" required >
   <div class="error-msg"></div>
 
-  <label for="email">※メールアドレス</label>
+  <label for="email"><span class="required ">※</span>メールアドレス</label>
   <input type="email" id="email" name="email" placeholder="example@mail.com" required autocomplete="email">
   <div class="error-msg"></div>
 
-  <label for="type">※種別</label>
+  <label for="type"><span class="required ">※</span>種別</label>
   <select id="type" name="type" required>
     <option value="">選択してください</option>
     <option value="制作依頼">制作依頼</option>
@@ -78,7 +78,7 @@ import Footer from '../components/Footer.astro';
   </select>
   <div class="error-msg"></div>
 
-  <label for="message">※お問い合わせ内容</label>
+  <label for="message"><span class="required ">※</span>お問い合わせ内容</label>
   <textarea id="message" name="message" placeholder="お問い合わせ内容をご記入ください" rows="5" required></textarea>
   <div class="error-msg"></div>
   <button type="submit">送信</button>
