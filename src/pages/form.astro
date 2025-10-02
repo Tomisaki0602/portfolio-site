@@ -1,5 +1,5 @@
 ---
-import Header from '../components/HeaderWork.astro';
+import HeaderWork from '../../components/HeaderWork.astro';
 import Footer from '../components/Footer.astro';
 ---
 
@@ -50,7 +50,7 @@ import Footer from '../components/Footer.astro';
     </script>
 </head>
 
-<HeaderWork />
+    <HeaderWork />
 
     <main class="main">
 <div class="form-container">
@@ -123,7 +123,56 @@ import Footer from '../components/Footer.astro';
         });
     </script>
 
-       
+        <script>
+ document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("contact-form");
+  const inputs = Array.from(form.querySelectorAll("input, select, textarea"));
+
+  // スマホで入力時のズーム防止
+  inputs.forEach(el => el.style.fontSize = "16px");
+
+  // 各 input にリアルタイムバリデーション表示
+  inputs.forEach(input => {
+    input.addEventListener("input", () => {
+      const errorEl = input.nextElementSibling;
+      if (errorEl && errorEl.classList.contains("error-msg")) {
+        errorEl.remove();
+      }
+    });
+  });
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault(); // フォーム送信はしない
+
+    let allValid = true;
+
+    // バリデーションチェック
+    inputs.forEach(input => {
+      const errorEl = input.nextElementSibling;
+      if (errorEl && errorEl.classList.contains("error-msg")) errorEl.remove();
+
+      if (!input.checkValidity()) {
+        allValid = false;
+        const msg = document.createElement("div");
+        msg.classList.add("error-msg");
+        msg.style.color = "red";
+        msg.style.fontSize = "0.9em";
+        msg.textContent = input.validationMessage;
+        input.after(msg);
+      }
+    });
+
+    if (!allValid) return; // エラーあれば次の処理はしない
+
+    // 次の input に自動移動（最後の input は移動なし）
+    const currentIndex = inputs.findIndex(input => input === document.activeElement);
+    const nextIndex = currentIndex + 1;
+    if (nextIndex < inputs.length) {
+      inputs[nextIndex].focus();
+    }
+  });
+});
+    </script>
 
 </body>
 </html>
