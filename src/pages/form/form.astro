@@ -1,43 +1,105 @@
-<form id="contact-form">
-  <input type="text" name="name" placeholder="名前" required />
-  <input type="email" name="email" placeholder="メール" required />
-  <select name="type" required>
-    <option value="">種別を選択</option>
-    <option value="質問">質問</option>
-    <option value="相談">相談</option>
-    <option value="その他">その他確認</option>
-  </select>
-  <textarea name="message" placeholder="メッセージ" required></textarea>
-  <button type="submit">送信</button>
-</form>
+---
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+---
 
-<script type="module">
-  const form = document.getElementById('contact-form');
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const data = {
-      name: form.name.value,
-      email: form.email.value,
-      type: form.type.value,
-      message: form.message.value
-    };
+<!DOCTYPE html>
+<html lang="ja">
 
-    try {
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Ryota Tomisaki Portfolio Site</title>
+     <meta name="description" content="Ryota Tomisakiのポートフォリオサイト。デザイン・コーディングの実績を紹介しています。">
+     <meta name="keywords" content="Ryota Tomisaki, ポートフォリオ, デザイン, コーディング, Web制作,デザイナー,冨崎涼太">
+    <link rel="canonical" href="https://portfolio-site-snowy-omega.vercel.app/">
+
+    <link rel="icon" type="image/png" href="/images/icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/app-icon.png">
+    <title>Ryota Tomisaki Portfolio Site</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://use.typekit.net/xab0ngk.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+     <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X00CFV5WYJ"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-X00CFV5WYJ');
+    </script>
+    <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "ti6yncp6bw");
+    </script>
+</head>
+
+<Header />
+
+    <main class="main">
+
+    <form id="contactForm">
+        <input type="text" name="name" placeholder="名前" required />
+        <input type="email" name="email" placeholder="メール" required />
+        <textarea name="message" placeholder="メッセージ" required></textarea>
+        <button type="submit">送信</button>
+      </form>
+    </main>
+
+    <Footer />
+  
+    <script>
+        const drawerBtn = document.querySelector('.drawer-btn');
+        const drawerNav = document.querySelector('.drawer-nav');
+        const drawerLinks = drawerNav.querySelectorAll('a'); // メニュー内のリンク
+
+        // ボタンで開閉
+        drawerBtn.addEventListener('click', () => {
+            if (drawerNav.classList.contains('active')) {
+                drawerNav.classList.remove('active');
+                drawerNav.classList.add('closing');
+                drawerBtn.classList.remove('active-btn');
+            } else {
+                drawerNav.classList.add('active');
+                drawerNav.classList.remove('closing');
+                drawerBtn.classList.add('active-btn');
+            }
+        });
+
+        // メニュー内リンククリックで閉じる
+        drawerLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                drawerNav.classList.remove('active');
+                drawerNav.classList.add('closing');
+                drawerBtn.classList.remove('active-btn');
+            });
+        });
+    </script>
+    <script>
+      const form = document.getElementById('contactForm');
+
+      form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+
       const res = await fetch('/api/contact', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json; charset=UTF-8' },
         body: JSON.stringify(data)
       });
-      const resData = await res.json();
-      if (res.ok) {
-        alert('送信成功');
-        form.reset();
-      } else {
-        alert('送信失敗: ' + resData.error);
-      }
-    } catch (err) {
-      alert('送信中にエラーが発生しました');
-      console.error(err);
-    }
-  });
+
+      const result = await res.json();
+      alert(result.message);
+    });
 </script>
+
+
+
+
+</body>
+</html>
