@@ -124,14 +124,14 @@ import Footer from '../components/Footer.astro';
     </script>
 
     <script>
-   document.addEventListener("DOMContentLoaded", () => {
+ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("contact-form");
   const inputs = Array.from(form.querySelectorAll("input, select, textarea"));
 
   // スマホで入力時のズーム防止
   inputs.forEach(el => el.style.fontSize = "16px");
 
-  // 各 input にリアルタイムバリデーション表示（任意）
+  // 各 input にリアルタイムバリデーション表示
   inputs.forEach(input => {
     input.addEventListener("input", () => {
       const errorEl = input.nextElementSibling;
@@ -141,8 +141,8 @@ import Footer from '../components/Footer.astro';
     });
   });
 
-  form.addEventListener("submit", async function(e) {
-    e.preventDefault(); // 送信を止める
+  form.addEventListener("submit", function(e) {
+    e.preventDefault(); // フォーム送信はしない
 
     let allValid = true;
 
@@ -162,7 +162,7 @@ import Footer from '../components/Footer.astro';
       }
     });
 
-    if (!allValid) return; // エラーあれば送信せず終了
+    if (!allValid) return; // エラーあれば次の処理はしない
 
     // 次の input に自動移動（最後の input は移動なし）
     const currentIndex = inputs.findIndex(input => input === document.activeElement);
@@ -171,33 +171,8 @@ import Footer from '../components/Footer.astro';
       inputs[nextIndex].focus();
     }
 
-    // ここにフォーム送信処理を入れる
-    const formData = {
-      name: document.getElementById("name").value,
-      tel: document.getElementById("tel").value,
-      email: document.getElementById("email").value,
-      type: document.getElementById("type").value,
-      message: document.getElementById("message").value
-    };
-
-    try {
-      const response = await fetch("https://script.google.com/macros/s/AKfycbwWN5iyvLXAfzxjcLGSPqEgd4Q3DyYcmL1gMiVYgvksqPHLNqSqHJ6bwGAYcPUe2b8IFg/exec", {
-        method: "POST",
-        body: JSON.stringify(formData),
-        headers: { "Content-Type": "application/json" }
-      });
-
-      const result = await response.json();
-      if (result.result === "success") {
-        alert("送信完了！");
-        form.reset();
-        inputs[0].focus();
-      } else {
-        alert("送信エラー: " + result.error);
-      }
-    } catch (err) {
-      alert("送信に失敗しました: " + err.message);
-    }
+    // ここで送信処理はなし
+    console.log("送信処理はなし、バリデーションOKです");
   });
 });
 
