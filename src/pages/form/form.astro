@@ -1,12 +1,13 @@
 ---
 const handleSubmit = async (event) => {
-  event.preventDefault();
-  
+  event.preventDefault(); // ここでページリロードを防ぐ
+
   const form = event.target;
+
   const data = {
     name: form.name.value,
     email: form.email.value,
-    type: "HP問い合わせ", // 必須なので固定値
+    type: form.type ? form.type.value : "HP問い合わせ", // type があれば取得
     message: form.message.value
   };
 
@@ -17,9 +18,15 @@ const handleSubmit = async (event) => {
       body: JSON.stringify(data)
     });
 
+    // サーバーが JSON を返していなければここでエラーになる
     const result = await res.json();
-    alert(result.message);
-    form.reset();
+
+    if (res.ok) {
+      alert(result.message || '送信成功！');
+      form.reset();
+    } else {
+      alert(result.message || '送信に失敗しました');
+    }
   } catch (err) {
     console.error(err);
     alert('送信中にエラーが発生しました');
@@ -43,6 +50,14 @@ const handleSubmit = async (event) => {
       <label>
         メール (必須)
         <input type="email" name="email" required>
+      </label>
+      <br>
+      <label>
+        種別 (必須)
+        <select name="type" required>
+          <option value="HP問い合わせ">HP問い合わせ</option>
+          <option value="資料請求">資料請求</option>
+        </select>
       </label>
       <br>
       <label>

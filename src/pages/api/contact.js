@@ -1,16 +1,10 @@
-import { createClient } from '@supabase/supabase-js';
-
-const supabaseUrl = process.env.SUPABASE_URL;
-const supabaseKey = process.env.SUPABASE_ANON_KEY;
-const supabase = createClient(supabaseUrl, supabaseKey);
-
 export async function post({ request }) {
   try {
     const body = await request.json();
     const { name, email, type, message } = body;
 
     const { data, error } = await supabase
-      .from('contacts')  // Supabase のテーブル名
+      .from('contacts')
       .insert([{ name, email, type, message }]);
 
     if (error) throw error;
