@@ -7,31 +7,33 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 export async function post({ request }) {
   try {
     const body = await request.json();
-    const { name, email, type, message } = body;
 
-    // 必須カラムにすべて値を入れる
-    if (!name || !email || !type || !message) {
-      return new Response(JSON.stringify({ message: '必須項目が不足しています' }), {
-        status: 400,
-        headers: { 'Content-Type': 'application/json; charset=UTF-8' }
+    const { data, error } = await supabase
+      .from('contact')
+      .insert([
+        {
+          name: body.name,
+          email: body.email,
+          type: body.type,       // ここ追加
+          message: body.message,
+        },
+      ]);
+
+    if (error) {
+      return new Response(JSON.stringify({ error: error.message }), {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' },
       });
     }
 
-    const { error } = await supabase
-      .from('contacts')
-      .insert([{ name, email, type, message }]);
-
-    if (error) throw error;
-
-    return new Response(JSON.stringify({ message: '送信成功！' }), {
+    return new Response(JSON.stringify({ success: true }), {
       status: 200,
-      headers: { 'Content-Type': 'application/json; charset=UTF-8' }
+      headers: { 'Content-Type': 'application/json' },
     });
   } catch (err) {
-    console.error(err);
-    return new Response(JSON.stringify({ message: '保存に失敗しました', error: err.message }), {
+    return new Response(JSON.stringify({ error: err.message }), {
       status: 500,
-      headers: { 'Content-Type': 'application/json; charset=UTF-8' }
+      headers: { 'Content-Type': 'application/json' },
     });
   }
 }

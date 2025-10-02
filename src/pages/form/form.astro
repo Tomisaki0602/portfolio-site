@@ -1,38 +1,18 @@
-<html lang="ja">
-  <head>
-    <meta charset="UTF-8">
-    <title>お問い合わせフォーム</title>
-  </head>
-  <body>
-    <h1>お問い合わせフォーム</h1>
+---
+import "/contact.js";
+---
 
-    <form id="contactForm">
-      <label>
-        名前 (必須)
-        <input type="text" name="name" required>
-      </label>
-      <br>
-      <label>
-        メール (必須)
-        <input type="email" name="email" required>
-      </label>
-      <br>
-      <label>
-        種別 (必須)
-        <select name="type" required>
-          <option value="HP問い合わせ">HP問い合わせ</option>
-          <option value="資料請求">資料請求</option>
-        </select>
-      </label>
-      <br>
-      <label>
-        メッセージ (必須)
-        <textarea name="message" required></textarea>
-      </label>
-      <br>
-      <button type="submit">送信</button>
-    </form>
+<form id="contact-form">
+  <input type="text" name="name" placeholder="名前" required />
+  <input type="email" name="email" placeholder="メール" required />
+  <select name="type" required>
+    <option value="">種別を選択</option>
+    <option value="質問">質問</option>
+    <option value="相談">相談</option>
+    <option value="その他">その他</option>
+  </select>
+  <textarea name="message" placeholder="メッセージ" required></textarea>
+  <button type="submit">送信</button>
+</form>
 
-    <script type="module" src="/contact.js"></script>
-  </body>
-</html>
+<script type="module" src="/contact.js"></script>
