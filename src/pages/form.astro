@@ -1,0 +1,172 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<!DOCTYPE html>
+<html lang="ja">
+
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Ryota Tomisaki Portfolio Site</title>
+     <meta name="description" content="Ryota Tomisakiのポートフォリオサイト。デザイン・コーディングの実績を紹介しています。">
+     <meta name="keywords" content="Ryota Tomisaki, ポートフォリオ, デザイン, コーディング, Web制作,デザイナー,冨崎涼太">
+    <link rel="canonical" href="https://portfolio-site-snowy-omega.vercel.app/">
+    
+    <!-- Open Graph（SNSシェア用） -->
+    <meta property="og:title" content="Ryota Tomisaki Portfolio Site">
+    <meta property="og:description" content="デザインとコーディングの実績を紹介するポートフォリオサイトです。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://portfolio-site-snowy-omega.vercel.app">
+
+    <!-- Twitterカード -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ryota Tomisaki Portfolio Site">
+    <meta name="twitter:description" content="デザインとコーディングの実績を紹介するポートフォリオサイトです。">
+
+    <link rel="icon" type="image/png" href="/images/icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/app-icon.png">
+    <title>Ryota Tomisaki Portfolio Site</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://use.typekit.net/xab0ngk.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+     <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X00CFV5WYJ"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-X00CFV5WYJ');
+    </script>
+    <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "ti6yncp6bw");
+    </script>
+</head>
+
+<Header />
+<main>
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Ryota Tomisaki Portfolio Site</title>
+     <meta name="description" content="Ryota Tomisakiのポートフォリオサイト。デザイン・コーディングの実績を紹介しています。">
+     <meta name="keywords" content="Ryota Tomisaki, ポートフォリオ, デザイン, コーディング, Web制作,デザイナー,冨崎涼太">
+    <link rel="canonical" href="https://portfolio-site-snowy-omega.vercel.app/">
+    
+    <!-- Open Graph（SNSシェア用） -->
+    <meta property="og:title" content="Ryota Tomisaki Portfolio Site">
+    <meta property="og:description" content="デザインとコーディングの実績を紹介するポートフォリオサイトです。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://portfolio-site-snowy-omega.vercel.app">
+
+    <!-- Twitterカード -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ryota Tomisaki Portfolio Site">
+    <meta name="twitter:description" content="デザインとコーディングの実績を紹介するポートフォリオサイトです。">
+
+    <link rel="icon" type="image/png" href="/images/icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/app-icon.png">
+    <title>Ryota Tomisaki Portfolio Site</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://use.typekit.net/xab0ngk.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+     <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X00CFV5WYJ"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-X00CFV5WYJ');
+    </script>
+    <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "ti6yncp6bw");
+    </script>
+</head>
+
+<body>
+<div class="form-container">
+    <form action="https://formspree.io/f/xrbykpjj"
+          method="POST"
+  id="contact-form">
+      <h2>お問い合わせフォーム</h2>
+      <label for="name"><span class="required">※</span>名前(会社名)</label>
+       <input type="tel" id="name" name="name" placeholder="例：山田 太郎 / 株式会社〇〇" required>
+
+      <label for="name">お電話番号</label>
+      <input type="text" id="tel" name="tel" placeholder="例：000-1234-5678">
+
+      <label for="email"><span class="required">※</span>メールアドレス</label>
+      <input type="email" id="email" name="email" placeholder="example@mail.com" required>
+
+      <label for="type"><span class="required">※</span>種別</label>
+      <select id="type" name="type" required>
+        <option value="">選択してください</option>
+        <option value="制作依頼">制作依頼</option>
+        <option value="見積もり相談">見積もり相談</option>
+        <option value="その他(オファーなど)">その他(オファーなど)</option>
+      </select>
+
+      <label for="message"><span class="required">※</span>お問合せ内容</label>
+      <textarea id="message" name="message" placeholder="お問い合わせ内容をご記入ください" rows="5" required></textarea>
+
+      <div class="submit-container">
+        <button type="submit">送信</button>
+      </div>
+
+      <p class="form-note">
+        ※入力いただいた内容はお問い合わせ対応のみに使用し、その他の目的で利用することはありません。
+      </p>
+
+    </form>
+</div>
+ </main>
+
+    <Footer />
+   
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="/js/text.js" type="module"></script>
+    <script src="/js/scroll.js" type="module"></script>
+    <script src="/js/graph.js" type="module"></script>
+    <script>
+        const drawerBtn = document.querySelector('.drawer-btn');
+        const drawerNav = document.querySelector('.drawer-nav');
+        const drawerLinks = drawerNav.querySelectorAll('a'); // メニュー内のリンク
+
+        // ボタンで開閉
+        drawerBtn.addEventListener('click', () => {
+            if (drawerNav.classList.contains('active')) {
+                drawerNav.classList.remove('active');
+                drawerNav.classList.add('closing');
+                drawerBtn.classList.remove('active-btn');
+            } else {
+                drawerNav.classList.add('active');
+                drawerNav.classList.remove('closing');
+                drawerBtn.classList.add('active-btn');
+            }
+        });
+
+        // メニュー内リンククリックで閉じる
+        drawerLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                drawerNav.classList.remove('active');
+                drawerNav.classList.add('closing');
+                drawerBtn.classList.remove('active-btn');
+            });
+        });
+    </script>
+
+</body>
+</html>

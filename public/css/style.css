@@ -1288,5 +1288,127 @@ img::selection {
     display: flex;
   }
 }
+/* フォーム */
+/* フォームコンテナ */
+.form-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+}
+
+/* 見出し */
+.form-container h2 {
+  text-align: center;
+  font-size: 1.8em;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* ラベル */
+.form-container label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #555;
+}
+
+/* 入力フィールド */
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container input[type="tel"],
+.form-container select,
+.form-container textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.8em;
+  background-color: #f9f9f9;
+  box-sizing: border-box;
+}
+
+.form-container textarea {
+  resize: vertical;
+  width: 100%;
+}
+
+/* フォーム送信ボタン */
+.form-container .submit-container {
+  text-align: center;
+  margin-bottom: 0px;
+}
+
+.form-container button[type="submit"] {
+  padding: 12px 20px;
+  font-size: 0.8em;
+  font-weight: bold;
+  background-color: #4e4e4e;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 70%;
+}
+
+.form-container button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .form-container {
+    padding: 20px;
+    margin-top: 80px;
+  }
+
+  .form-container h2 {
+    font-size: 1.5em;
+  }
+
+  .form-container input[type="text"],
+  .form-container input[type="email"],
+  .form-container select,
+  .form-container textarea {
+    padding: 10px;
+    font-size: 0.95em;
+  }
+
+  .form-container button[type="submit"] {
+    width: 100%;
+    font-size: 1em;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-container {
+    padding: 15px;
+    margin-top: 90px;
+  }
+
+  .form-container h2 {
+    font-size: 1.3em;
+  }
+
+  .form-container input[type="text"],
+  .form-container input[type="email"],
+  .form-container select,
+  .form-container textarea {
+    padding: 8px;
+    font-size: 0.9em;
+  }
+
+  .form-container button[type="submit"] {
+    padding: 10px;
+    font-size: 0.95em;
+  }
+}
+.required{
+  color: red;
+}
 
 /*# sourceMappingURL=style.css.map */
