@@ -122,80 +122,93 @@ import Footer from '../components/Footer.astro';
         });
     </script>
 
-    <script>
-   document.addEventListener("DOMContentLoaded", () => {
+   <script>
+document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("contact-form");
   const inputs = Array.from(form.querySelectorAll("input, select, textarea"));
 
-  // スマホで入力時のズーム防止
-  inputs.forEach(el => el.style.fontSize = "16px");
+  // モバイルでのフォーカスズーム防止
+  inputs.forEach((input) => {
+    input.style.fontSize = "16px"; // iOSでズームされないように
+  });
 
-  // 各 input にリアルタイムバリデーション表示
-  inputs.forEach(input => {
-    input.addEventListener("input", () => {
-      const errorEl = input.nextElementSibling;
-      if (errorEl && errorEl.classList.contains("error-msg")) {
-        errorEl.remove();
+  // エラーメッセージ用 span を作成
+  inputs.forEach((input) => {
+    const errorSpan = document.createElement("span");
+    errorSpan.className = "error-message";
+    errorSpan.style.color = "red";
+    errorSpan.style.fontSize = "0.85em";
+    errorSpan.style.display = "block";
+    errorSpan.style.marginTop = "2px";
+    input.insertAdjacentElement("afterend", errorSpan);
+  });
+
+  // バリデーション関数
+  function validateInput(input) {
+    const value = input.value.trim();
+    const errorSpan = input.nextElementSibling;
+    let message = "";
+
+    switch (input.id) {
+      case "name":
+        if (!value) message = "名前を入力してください";
+        break;
+      case "tel":
+        if (value && !/^\d{10,11}$/.test(value.replace(/-/g, ""))) {
+          message = "数字10～11桁で入力してください（ハイフンなし）";
+        }
+        break;
+      case "email":
+        if (!value) message = "メールアドレスを入力してください";
+        else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+          message = "有効なメールアドレスを入力してください";
+        }
+        break;
+      case "type":
+        if (!value) message = "種別を選択してください";
+        break;
+      case "message":
+        if (!value) message = "お問い合わせ内容を入力してください";
+        break;
+    }
+
+    errorSpan.textContent = message;
+    return message === "";
+  }
+
+  // リアルタイムバリデーション
+  inputs.forEach((input) => {
+    input.addEventListener("input", () => validateInput(input));
+  });
+
+  // 確定で次の input に移動（モバイル用）
+  inputs.forEach((input, idx) => {
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        const next = inputs[idx + 1];
+        if (next) next.focus();
       }
     });
   });
 
-const form = document.getElementById("contact-form");
-const inputs = Array.from(form.querySelectorAll("input, select, textarea"));
+  // フォーム送信
+  form.addEventListener("submit", function (e) {
+    let allValid = true;
+    inputs.forEach((input) => {
+      if (!validateInput(input)) allValid = false;
+    });
 
-form.addEventListener("submit", function(e) {
-  e.preventDefault(); // 送信は行わない
-
-  let allValid = true;
-
-  inputs.forEach(input => {
-    const errorEl = input.nextElementSibling; // 各 input の下にある .error-msg
-    errorEl.textContent = ""; // 前のエラーを消す
-
-    // 名前
-    if (input.id === "name" && input.value.trim() === "") {
-      errorEl.textContent = "名前(会社名)を入力してください";
-      allValid = false;
+    if (!allValid) {
+      e.preventDefault();
+      return;
     }
 
-    // 電話番号（任意だけど入力されていれば数字のみ）
-    if (input.id === "tel" && input.value.trim() !== "" && !/^\d{10,11}$/.test(input.value)) {
-      errorEl.textContent = "電話番号は数字10〜11桁で入力してください（ハイフンなし）";
-      allValid = false;
-    }
-
-    // メール
-    if (input.id === "email" && input.value.trim() === "") {
-      errorEl.textContent = "メールアドレスを入力してください";
-      allValid = false;
-    } else if (input.id === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
-      errorEl.textContent = "正しいメールアドレスの形式で入力してください";
-      allValid = false;
-    }
-
-    // 種別
-    if (input.id === "type" && input.value === "") {
-      errorEl.textContent = "種別を選択してください";
-      allValid = false;
-    }
-
-    // メッセージ
-    if (input.id === "message" && input.value.trim() === "") {
-      errorEl.textContent = "お問い合わせ内容を入力してください";
-      allValid = false;
-    }
+    // Formspree送信は通常の action で行うので JS 側で fetch しない
+    // 成功後にメッセージを出す場合は form の on:submit イベントで処理可能
   });
-
-  if (allValid) {
-    // ここで送信処理（今回はなし）
-    console.log("バリデーションOK。送信処理ここに入れる");
-  }
 });
-
-
-});
-
-    </script>
+</script>
 
 </body>
 </html>
