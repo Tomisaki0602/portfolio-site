@@ -28,9 +28,9 @@ function EachTextAnimeControl() {
       text.split('').forEach(function (t, i) {
         if (t !== " ") {
           if (i < 10) {
-            textbox += '<span style="animation-delay:.' + i + 's;">' + t + '</span>';
+            textbox += '<span style="animation-delay:' + (i * 0.1 + 3) + 's;">' + t + '</span>';
           } else {
-            var n = i / 10;
+            var n = i / 10 + 3;  // ここで全体に5秒遅らせる
             textbox += '<span style="animation-delay:' + n + 's;">' + t + '</span>';
           }
   
