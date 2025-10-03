@@ -52,10 +52,12 @@ import Footer from '../components/Footer.astro';
 
 <HeaderWork />
 
-    <main class="main">
+<main class="main">
+
 <div class="form-container">
 <form id="contact-form" action="https://formspree.io/f/xrbykpjj" method="POST">
-  <h2>お問い合わせフォーム</h2>
+
+  <h2>お問い合わせ</h2>
 
   <label for="name"><span class="required ">※</span>名前(会社名)</label>
   <input type="text" id="name" name="name" placeholder="例：山田 太郎 / 株式会社〇〇" required autocomplete="name">
@@ -93,7 +95,6 @@ import Footer from '../components/Footer.astro';
     </main>
 
     <Footer />
-
     <script>
         const drawerBtn = document.querySelector('.drawer-btn');
         const drawerNav = document.querySelector('.drawer-nav');

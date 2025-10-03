@@ -171,6 +171,7 @@ ul.about_box-text-list {
 }
 .about_title {
   text-align: center;
+  margin-top: 100px;
   margin-bottom: 30px;
 }
 .about_title-top {
@@ -312,6 +313,14 @@ ul.about_box-text-list {
   transform: rotate(-40deg);
   top: -9px;
   left: 35%;
+}
+@media screen and (max-width:450px){
+  .skills_title-bottom::before{
+    left: 25%;
+  }
+  .works_title-bottom::before{
+    left: 15%;
+  }
 }
 .skills_box {
   width: 70%;
@@ -1272,47 +1281,14 @@ img::selection {
   display: block;
   width: 100%;
 }
-.header-contact a{
-  background: #4e4e4e;
-  color: #fff;
-  font-size: 23px;
-  text-align: center;
-  width:calc(100% + 40px) !important;
-  left: -20px;
-  margin-top: 10px;
-  padding: 5px 0 10px;
-  border-radius: 50px;
-}
-.header-contact a::before{
-  display: none !important;
-}
-.header-contact a small{
-  position: inherit !important;
-  font-size: 14px;
-  bottom: 0;
-  text-align: center;
-  margin-top: -5px;
-}
+
 @media screen and (max-width:450px){
     .drawer-nav ul{
       gap: 50px;
     }
     .drawer-nav li{
     width:100%;
-    }
-    .drawer-nav a::before{
-      display: none;
-    }
-    .drawer-nav a{
-      text-align: center;
-    }
-     .drawer-nav a small{
-      text-align: center;
-    }
-    .header-contact a{
-    width:calc(100% + 100px) !important;
-    left: -50px;
-}
+  }
 }
 /* 開く */
 .drawer-nav.active {
@@ -1343,7 +1319,7 @@ img::selection {
 .form-container {
   width: 100%;
   max-width: 600px;
-  margin: 0 auto;
+  margin: 100px auto 0;
   padding: 20px;
   background-color: #ffffff;
   border-radius: 8px;
@@ -1399,6 +1375,7 @@ img::selection {
 }
 
 .form-container button[type="submit"] {
+  display: block;
   padding: 12px 20px;
   font-size: 0.8em;
   font-weight: bold;
@@ -1409,6 +1386,7 @@ img::selection {
   cursor: pointer;
   transition: background-color 0.3s ease;
   width: 70%;
+  text-align: center;
   margin: 0 auto;
 }
 
@@ -1474,6 +1452,3 @@ img::selection {
   margin-bottom: 20px !important;
   display: block;
 }
-
-
-/*# sourceMappingURL=style.css.map */
