@@ -94,7 +94,35 @@ import Footer from '../components/Footer.astro';
 
     </main>
 
-    
+    <Footer />
+    <script>
+        const drawerBtn = document.querySelector('.drawer-btn');
+        const drawerNav = document.querySelector('.drawer-nav');
+        const drawerLinks = drawerNav.querySelectorAll('a'); // メニュー内のリンク
+
+        // ボタンで開閉
+        drawerBtn.addEventListener('click', () => {
+            if (drawerNav.classList.contains('active')) {
+                drawerNav.classList.remove('active');
+                drawerNav.classList.add('closing');
+                drawerBtn.classList.remove('active-btn');
+            } else {
+                drawerNav.classList.add('active');
+                drawerNav.classList.remove('closing');
+                drawerBtn.classList.add('active-btn');
+            }
+        });
+
+        // メニュー内リンククリックで閉じる
+        drawerLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                drawerNav.classList.remove('active');
+                drawerNav.classList.add('closing');
+                drawerBtn.classList.remove('active-btn');
+            });
+        });
+    </script>
+
 
 </body>
 </html>
