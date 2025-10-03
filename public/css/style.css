@@ -122,6 +122,14 @@ ul {
   left: -30px !important;
   top: 30px;
 }
+@media screen and (max-width:480px){
+  .header{
+    top: 15px;
+  }
+  .drawer-btn{
+    top: 10px !important;
+  }
+}
 
 .main {
   width: 100%;
@@ -950,7 +958,7 @@ img::selection {
 }
 @media screen and (max-width: 500px) {
   .works_visual {
-    margin-top: 100px;
+    margin-top: 70px;
   }
   .work_page-title h2 {
     font-size: 25px;
@@ -972,6 +980,7 @@ img::selection {
     width: 90%;
   }
 }
+
 .chart-container {
   display: flex;
   gap: 0%;
