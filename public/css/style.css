@@ -241,8 +241,13 @@ ul.about_box-text-list {
   position: relative;
 }
 .about_box img {
-  width: 50%;
-  margin: 0 auto;
+  width: 40%;
+  margin: 0 0 0 auto;
+}
+@media screen and (max-width:991px){
+  .about_box img{
+    margin: 0 auto;
+  }
 }
 .about_box-text {
   margin: 0 auto;
