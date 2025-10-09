@@ -2,6 +2,45 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Abtest from '../components/Abtest.astro';
+
+import fs from 'fs';
+import path from 'path';
+
+const newsDir = path.resolve('./src/content/news');
+
+// Markdownファイル一覧取得
+const files = fs.readdirSync(newsDir).filter(f => f.endsWith('.md'));
+
+// 日付でソート（新しい順）
+const sortedFiles = files.sort((a, b) => {
+  const aDate = a.replace('.md', '').split('-')[0];
+  const bDate = b.replace('.md', '').split('-')[0];
+  return bDate.localeCompare(aDate);
+});
+
+// 3件だけ取得
+const latestFiles = sortedFiles.slice(0, 3);
+
+// frontmatter からタイトルと日付を抽出
+const news = latestFiles.map(file => {
+  const content = fs.readFileSync(path.join(newsDir, file), 'utf-8');
+  const match = content.match(/^---\n([\s\S]+?)\n---/);
+  let title = file.replace('.md', '');
+  let date = '';
+
+  if (match) {
+    const fm = match[1].split('\n');
+    fm.forEach(line => {
+      const [key, ...rest] = line.split(':');
+      const k = key.trim();
+      const v = rest.join(':').trim().replace(/^"|"$/g, '');
+      if (k === 'title') title = v;
+      if (k === 'date') date = v;
+    });
+  }
+
+  return { slug: file.replace('.md', ''), title, date };
+});
 ---
 
 <!DOCTYPE html>
@@ -71,6 +110,25 @@ import Abtest from '../components/Abtest.astro';
             <img src="/images/main_visual-bg.png" alt="">
             </div>
         </div>
+
+         <div class="news top-news" id="news">
+            <div class="news_title">
+            <h2 class="news_title-top">NEWS</h2>
+            <span class="news_title-bottom">お知らせ</span>
+            </div>
+            <ul>
+            {news.map(item => (
+                <li>
+                <span>{item.date}</span>
+                    <a href={`/news/${item.slug}`}>
+                        {item.title}
+                    </a>
+                </li>
+            ))}
+            </ul>
+            <a href="/news" class="news_back">一覧を見る<img src="/images/news/arrow_icon.svg"></a>
+        </div>
+
 
         <div class="about" id="about">
             <div class="about_title">
