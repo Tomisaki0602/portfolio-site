@@ -1,0 +1,143 @@
+---
+import fs from 'fs';
+import path from 'path';
+import HeaderWork from '../../components/HeaderWork.astro';
+import Footer from '../../components/Footer.astro';
+import Abtest from '../../components/Abtest.astro';
+
+const newsDir = path.resolve('./src/content/news');
+const files = fs.readdirSync(newsDir).filter(f => f.endsWith('.md'));
+
+// frontmatter を抽出して一覧用データを作る
+let newsList = files.map(file => {
+  const content = fs.readFileSync(path.join(newsDir, file), 'utf-8');
+  const match = content.match(/^---\n([\s\S]+?)\n---/);
+  let frontmatter = {};
+  if (match) {
+    const fmLines = match[1].split('\n');
+    fmLines.forEach(line => {
+      const [key, ...rest] = line.split(':');
+      if (key && rest) frontmatter[key.trim()] = rest.join(':').trim().replace(/^"|"$/g,'');
+    });
+  }
+
+  // 日付を分解
+  const [year, month, day] = file.split('-').slice(0,3);
+
+  return {
+    slug: file.replace('.md',''),
+    year,
+    month,
+    day,
+    ...frontmatter
+  };
+});
+
+// 🔹 新着順（date降順）にソート
+newsList = newsList.sort((a,b) => new Date(b.date) - new Date(a.date));
+---
+
+
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ニュース一覧</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="description" content="Ryota Tomisakiのポートフォリオサイト。デザイン・コーディングの実績を紹介しています。">
+     <meta name="keywords" content="Ryota Tomisaki, ポートフォリオ, デザイン, コーディング, Web制作,デザイナー,冨崎涼太">
+    <link rel="canonical" href="https://portfolio-site-snowy-omega.vercel.app/">
+    
+    <!-- Open Graph（SNSシェア用） -->
+    <meta property="og:title" content="Ryota Tomisaki Portfolio Site">
+    <meta property="og:description" content="デザインとコーディングの実績を紹介するポートフォリオサイトです。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://portfolio-site-snowy-omega.vercel.app">
+
+    <!-- Twitterカード -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ryota Tomisaki Portfolio Site">
+    <meta name="twitter:description" content="デザインとコーディングの実績を紹介するポートフォリオサイトです。">
+
+    <link rel="icon" type="image/png" href="/images/icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/app-icon.png">
+    <title>Ryota Tomisaki Portfolio Site</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://use.typekit.net/xab0ngk.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+     <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X00CFV5WYJ"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-X00CFV5WYJ');
+    </script>
+    <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "ti6yncp6bw");
+    </script>
+    <link rel="stylesheet" href="https://use.typekit.net/jap8uvc.css">
+    <Abtest />
+  </head>
+  
+
+
+<body>
+
+<HeaderWork />
+
+  <div class="news" id="news">
+      <div class="news_title">
+       <h2 class="news_title-top">NEWS</h2>
+      <span class="news_title-bottom">お知らせ</span>
+  <div class="news-flex">
+    {newsList.map(item => (
+      <div class="news-list-row">
+      <div class="news-data">
+        <span class="year">{item.year}</span>
+        <span class="day">{item.month}.{item.day}</span>
+      </div>
+        <a href={`/news/${item.slug}`}>{item.title}
+        <span class="arrow"></span></a>
+      </div>
+    ))}
+  </div>
+  </div>
+</div>
+
+<Footer />
+<script>
+        const drawerBtn = document.querySelector('.drawer-btn');
+        const drawerNav = document.querySelector('.drawer-nav');
+        const drawerLinks = drawerNav.querySelectorAll('a'); // メニュー内のリンク
+
+        // ボタンで開閉
+        drawerBtn.addEventListener('click', () => {
+            if (drawerNav.classList.contains('active')) {
+                drawerNav.classList.remove('active');
+                drawerNav.classList.add('closing');
+                drawerBtn.classList.remove('active-btn');
+            } else {
+                drawerNav.classList.add('active');
+                drawerNav.classList.remove('closing');
+                drawerBtn.classList.add('active-btn');
+            }
+        });
+
+        // メニュー内リンククリックで閉じる
+        drawerLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                drawerNav.classList.remove('active');
+                drawerNav.classList.add('closing');
+                drawerBtn.classList.remove('active-btn');
+            });
+        });
+    </script>
+
+
+  </body>
+</html>

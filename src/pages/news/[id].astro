@@ -1,0 +1,64 @@
+---
+import fs from 'fs';
+import path from 'path';
+import { marked } from 'marked';
+
+// 動的ルート生成
+export async function getStaticPaths() {
+  const newsDir = path.resolve('./src/content/news');
+  const files = fs.readdirSync(newsDir).filter(f => f.endsWith('.md'));
+  return files.map(file => ({
+    params: { id: file.replace('.md','') },
+  }));
+}
+
+// URL パラメータから記事を取得
+const slug = Astro.params.id;
+const filePath = path.resolve('./src/content/news', `${slug}.md`);
+
+if (!fs.existsSync(filePath)) {
+  throw new Error(`ニュース記事が見つかりません: ${slug}`);
+}
+
+const markdownRaw = fs.readFileSync(filePath, 'utf-8');
+
+// frontmatter と本文を分離
+const match = markdownRaw.match(/^---\n([\s\S]+?)\n---\n([\s\S]*)$/);
+let frontmatter = {};
+let markdownBody = '';
+if (match) {
+  const fmLines = match[1].split('\n');
+  fmLines.forEach(line => {
+    const [key, ...rest] = line.split(':');
+    if (key && rest) frontmatter[key.trim()] = rest.join(':').trim().replace(/^"|"$/g,'');
+  });
+  markdownBody = match[2];
+} else {
+  markdownBody = markdownRaw;
+}
+
+// Markdown を HTML に変換
+const htmlContent = marked.parse(markdownBody);
+---
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{frontmatter.title || slug}</title>
+  </head>
+  <body>
+<article>
+  <h1>{frontmatter.title || slug}</h1>
+  <p>{frontmatter.date || ''}</p>
+
+  {frontmatter.thumbnail && (
+    <img src={frontmatter.thumbnail} alt={frontmatter.title} width="400" />
+  )}
+
+  <!-- ここがポイント -->
+  <div set:html={htmlContent}></div>
+</article>
+
+
+    <a href="/news">一覧に戻る</a>
+  </body>
+</html>
