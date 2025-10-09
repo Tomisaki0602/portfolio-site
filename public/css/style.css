@@ -1687,6 +1687,7 @@ justify-content: center;
 }
     .main #news {
         margin-top: 0;
+        padding-top: 30px;
     }
 @media screen and (max-width:400px){
   .arrow{
