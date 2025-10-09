@@ -725,6 +725,24 @@ img::selection {
     font-size: 14px;
   }
 }
+@media screen and (max-width:650px){
+  li.footer_inner-item {
+    margin-bottom: 40px;
+  }
+  .footer_inner-list {
+    flex-wrap: wrap;
+  }
+}
+@media screen and (max-width:450px){
+    li.footer_inner-item {
+        margin-bottom: 30px;
+    }
+    .footer_inner-list::after{
+      content: "";
+      width: 43%;
+      display: block;
+    }
+  }
 @media screen and (max-width: 1156px) {
   .about_box {
     justify-content: center;
