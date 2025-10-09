@@ -34,7 +34,7 @@ let newsList = files.map(file => {
 });
 
 // 🔹 新着順（date降順）にソート
-newsList = newsList.sort((a,b) => new Date(b.date) - new Date(a.date));
+newsList = newsList.sort((a, b) => new Date(b.date) - new Date(a.date));
 ---
 
 
@@ -96,7 +96,7 @@ newsList = newsList.sort((a,b) => new Date(b.date) - new Date(a.date));
       <span class="news_title-bottom">お知らせ</span>
   <div class="news-flex">
     {newsList.map(item => (
-      <div class="news-list-row">
+      <div class="news-list-row fade-in">
       <div class="news-data">
         <span class="year">{item.year}</span>
         <span class="day">{item.month}.{item.day}</span>
@@ -109,8 +109,35 @@ newsList = newsList.sort((a,b) => new Date(b.date) - new Date(a.date));
   </div>
 </div>
 
+ <a href="/" class="top_back fade-in"><img src="/images/news/arrow_icon.svg">TOPに戻る</a>
+
 <Footer />
 <script>
+        // フェードイン
+        function showElementAnimation() {
+            var element = document.getElementsByClassName('fade-in');
+            if (!element) return;
+            var showTiming = window.innerHeight > 768 ? 200 : 60;
+            var scrollY = window.pageYOffset;
+            var windowH = window.innerHeight;
+            for (var i = 0; i < element.length; i++) {
+                var elemClientRect = element[i].getBoundingClientRect(); 
+                var elemY = scrollY + elemClientRect.top; 
+                if (scrollY + windowH - showTiming > elemY) {
+                    element[i].classList.add('show');
+                }
+            }
+        }
+        showElementAnimation();
+        window.addEventListener('scroll', showElementAnimation);
+
+        // ページトップ
+        const pagetop_btn = document.querySelector(".pagetop");
+        pagetop_btn.addEventListener("click", () => {
+            window.scroll({ top: 0, behavior: "smooth" });
+        });
+        </script>
+        <script>
         const drawerBtn = document.querySelector('.drawer-btn');
         const drawerNav = document.querySelector('.drawer-nav');
         const drawerLinks = drawerNav.querySelectorAll('a'); // メニュー内のリンク

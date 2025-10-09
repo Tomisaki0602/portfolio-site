@@ -1,4 +1,10 @@
 ---
+import HeaderWork from '../../components/HeaderWork.astro';
+import FooterWork from '../../components/FooterWork.astro';
+import Abtest from '../../components/Abtest.astro';
+
+const { title = "Ryota Tomisaki Portfolio Site", description = "デザインとコーディングの実績を紹介するポートフォリオサイトです。" } = Astro.props;
+
 import fs from 'fs';
 import path from 'path';
 import { marked } from 'marked';
@@ -40,25 +46,100 @@ if (match) {
 // Markdown を HTML に変換
 const htmlContent = marked.parse(markdownBody);
 ---
+
+<!DOCTYPE html>
 <html lang="ja">
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="https://use.typekit.net/xab0ngk.css" />
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Google Analytics & Clarity などのタグもここにまとめる -->
+    <Abtest />
+  </head>
+  <body class="news">
+    <HeaderWork />
+
+    <main>
     <meta charset="UTF-8" />
     <title>{frontmatter.title || slug}</title>
   </head>
   <body>
-<article>
-  <h1>{frontmatter.title || slug}</h1>
-  <p>{frontmatter.date || ''}</p>
+<article class="news-slug">
+  <h1 class="fade-in">{frontmatter.title || slug}</h1>
+  <p class="fade-in">{frontmatter.date || ''}</p>
 
   {frontmatter.thumbnail && (
-    <img src={frontmatter.thumbnail} alt={frontmatter.title} width="400" />
+    <img class="fade-in" src={frontmatter.thumbnail} alt={frontmatter.title} width="100%" />
   )}
 
   <!-- ここがポイント -->
-  <div set:html={htmlContent}></div>
+  <div set:html={htmlContent}  class="fade-in"></div>
 </article>
 
 
-    <a href="/news">一覧に戻る</a>
+    <a href="/news" class="news_back"><img src="/images/news/arrow_icon.svg">一覧に戻る</a>
+</main>
+
+    <FooterWork />
+
+    <!-- 共通script -->
+    <script src="/js/text.js" type="module"></script>
+    <script src="/js/scroll.js" type="module"></script>
+    <script src="/js/graph.js" type="module"></script>
+    <script src="/js/anime.js" type="module"></script>
+
+    <script>
+      // フェードイン
+      function showElementAnimation() {
+        var element = document.getElementsByClassName('fade-in');
+        if (!element) return;
+        var showTiming = window.innerHeight > 768 ? 200 : 60;
+        var scrollY = window.pageYOffset;
+        var windowH = window.innerHeight;
+        for (var i = 0; i < element.length; i++) {
+          var elemClientRect = element[i].getBoundingClientRect();
+          var elemY = scrollY + elemClientRect.top;
+          if (scrollY + windowH - showTiming > elemY) {
+            element[i].classList.add('show');
+          }
+        }
+      }
+      showElementAnimation();
+      window.addEventListener('scroll', showElementAnimation);
+
+      // ページトップ
+      const pagetop_btn = document.querySelector(".pagetop");
+      if (pagetop_btn) {
+        pagetop_btn.addEventListener("click", () => {
+          window.scroll({ top: 0, behavior: "smooth" });
+        });
+      }
+    </script>
+
+    <script>
+      // ドロワーメニュー
+      const drawerBtn = document.querySelector('.drawer-btn');
+      const drawerNav = document.querySelector('.drawer-nav');
+      if (drawerBtn && drawerNav) {
+        const drawerLinks = drawerNav.querySelectorAll('a');
+        drawerBtn.addEventListener('click', () => {
+          drawerNav.classList.toggle('active');
+          drawerBtn.classList.toggle('active-btn');
+        });
+        drawerLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            drawerNav.classList.remove('active');
+            drawerBtn.classList.remove('active-btn');
+          });
+        });
+      }
+    </script>
   </body>
 </html>
