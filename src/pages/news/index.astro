@@ -98,11 +98,12 @@ newsList = newsList.sort((a, b) => new Date(b.date) - new Date(a.date));
   <div class="news-flex">
     {newsList.map(item => (
       <div class="news-list-row fade-in">
-      <div class="news-data">
-        <span class="year">{item.year}</span>
-        <span class="day">{item.month}.{item.day}</span>
-      </div>
-        <a href={`/news/${item.slug}`}>{item.title}
+        <a href={`/news/${item.slug}`}>
+          <div class="news-data">
+          <span class="year">{item.year}</span>
+          <span class="day">{item.month}.{item.day}</span>
+          </div>
+          <span class="news-list-title">{item.title}</span>
         <span class="arrow"></span></a>
       </div>
     ))}

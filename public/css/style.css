@@ -1598,7 +1598,8 @@ p.form-note {
   font-family: "area-extended", sans-serif;
 }
 .news-list-row a {
-    display: inline-block;
+    display:flex;
+    align-items: center;
     width: 70%;
     text-align: left;
     padding-left: 2%;
@@ -1609,17 +1610,21 @@ p.form-note {
     padding-right: 60px;
     justify-content: center;
 }
+.news-list-row  .news-list-title{
+  padding: 10px;
+}
 .news-data .year{
   position:absolute;
-  top: -7px;
-  left: 26px;
+  top: -9px;
+  left: 6px;
   font-size: 0.8rem;
   font-variant-numeric: tabular-nums;
 }
 .news-data .day{
   font-size: 1.85rem;
   border-right: 1px solid #ddd;
-  width: 150px;
+  width: 20%;
+  min-width: 120px;
   letter-spacing: 0.15rem;
   display: inline-block;
   font-variant-numeric: tabular-nums;
@@ -1636,6 +1641,9 @@ justify-content: center;
     align-items: center;
     position: relative;
     justify-content: center;
+}
+.news-list-title{
+  width: 80%;
 }
 .arrow{
   position: absolute;
@@ -1701,6 +1709,7 @@ justify-content: center;
         display: block;
     }
    .news-list-row a {
+        flex-direction: column;
         font-size: 18px;
         width: 90%;
         padding-right: 50px;
@@ -1710,10 +1719,21 @@ justify-content: center;
     #news{
       margin-top: 80px;
     }
+    .news-list-row .news-list-title{
+      padding: 0;
+      text-align: left;
+      margin-right: auto;
+      width: 100%;
+    }
 }
     .main #news {
         margin-top: 0;
         padding-top: 30px;
+    }
+    @media screen and (max-width:480px){
+      .arrow{
+        right: 20px;
+      }
     }
 @media screen and (max-width:400px){
   .arrow{
@@ -1723,6 +1743,7 @@ justify-content: center;
         padding-right: 10px;
         width: 100%;
         padding-left: 10px;
+        margin: 0 auto;
     }
 }
 
@@ -1855,7 +1876,7 @@ justify-content: center;
 
 ul.bread-flex {
     display: flex;
-    gap: 2%;
+    gap: 1%;
     font-size: 12px;
     background: #f8f8f8;
     padding: 5px 10px 5px 23.5px;
