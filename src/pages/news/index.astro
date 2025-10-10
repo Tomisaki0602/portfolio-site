@@ -4,6 +4,7 @@ import path from 'path';
 import HeaderWork from '../../components/HeaderWork.astro';
 import Footer from '../../components/Footer.astro';
 import Abtest from '../../components/Abtest.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
 
 const newsDir = path.resolve('./src/content/news');
 const files = fs.readdirSync(newsDir).filter(f => f.endsWith('.md'));
@@ -89,8 +90,8 @@ newsList = newsList.sort((a, b) => new Date(b.date) - new Date(a.date));
 <body>
 
 <HeaderWork />
-
   <div class="news" id="news">
+  <Breadcrumb />
       <div class="news_title">
        <h2 class="news_title-top">NEWS</h2>
       <span class="news_title-bottom">お知らせ</span>

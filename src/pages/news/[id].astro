@@ -2,6 +2,7 @@
 import HeaderWork from '../../components/HeaderWork.astro';
 import FooterWork from '../../components/FooterWork.astro';
 import Abtest from '../../components/Abtest.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
 
 const { title = "Ryota Tomisaki Portfolio Site", description = "デザインとコーディングの実績を紹介するポートフォリオサイトです。" } = Astro.props;
 
@@ -74,6 +75,7 @@ const htmlContent = marked.parse(markdownBody);
   </head>
   <body>
 <article class="news-slug">
+<Breadcrumb />
   <h1 class="fade-in">{frontmatter.title || slug}</h1>
   <p class="fade-in">{frontmatter.date || ''}</p>
 
@@ -94,7 +96,7 @@ const htmlContent = marked.parse(markdownBody);
     <!-- 共通script -->
     <script src="/js/text.js" type="module"></script>
     <script src="/js/scroll.js" type="module"></script>
-    <script src="/js/graph.js" type="module"></script>
+    <script src="/js/graph.js" type="module"></script>   
     <script src="/js/anime.js" type="module"></script>
 
     <script>
