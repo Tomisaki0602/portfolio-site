@@ -986,7 +986,7 @@ img::selection {
 }
 @media screen and (max-width: 500px) {
   .works_visual {
-    margin-top: 70px;
+    margin-top: 0px;
   }
   .work_page-title h2 {
     font-size: 25px;
@@ -1855,7 +1855,7 @@ justify-content: center;
 
 ul.bread-flex {
     display: flex;
-    gap: 3%;
+    gap: 2%;
     font-size: 12px;
     background: #f8f8f8;
     padding: 5px 10px 5px 23.5px;
@@ -1867,7 +1867,42 @@ ul.bread-flex a{
   font-weight: bold;
   color: #4e4e4e;
 }
+.bc_bottom {
+  display: none;
+}
+.bc_top{
+  display: block;
+}
+@media screen and (min-width:501px){
+.bc_bottom {
+  display: block;
+}
+.bc_top{
+  display: none;
+}
+}
+@media screen and (max-width:500px){
+  .bc_top{
+    margin-top: 80px;
+  }
+}
+.work-main ul.bread-flex{
+  margin-left: auto !important;
+  margin-right: auto !important;
+  max-width: 1200px;
+  padding: 0;
+  gap: 2% !important;
+}
+.work-main ul.bread-flex li:first-child{
+  padding-left: 10px;
+}
+.work-main ul.bread-flex li ,.work-main ul.bread-flex span{
+  padding: 5px 0;
+}
 /* news */
+.work-main nav{
+  background: #efefef;
+}
 .news ul.bread-flex {
     max-width: 1000px;
     margin: 0 auto 20px;

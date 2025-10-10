@@ -2,6 +2,7 @@
 import HeaderWork from '../../components/HeaderWork.astro';
 import FooterWork from '../../components/FooterWork.astro';
 import Abtest from '../../components/Abtest.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
 ---
 
 <!DOCTYPE html>
@@ -52,11 +53,18 @@ import Abtest from '../../components/Abtest.astro';
 
     <HeaderWork />
 
-    <main class="main">
+    <main class="main work-main">
+        <div class="bc_top">
+        <Breadcrumb />
+        </div>
+
         <div class="works_visual fade-in">
             <img src="/images/work_pc-01.jpg" alt="">
         </div>
-    </main>
+
+        <div class="bc_bottom">
+         <Breadcrumb />
+         </div>
 
     <div class="works-arrow">
         <div>
@@ -86,7 +94,7 @@ import Abtest from '../../components/Abtest.astro';
         <div><span>制作日:</span>2023.07.10~08.15</div>
         <div><span>サイトURL:</span>none</div>
     </div>
-
+    </main>
     <FooterWork />
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>

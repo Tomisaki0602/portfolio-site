@@ -3,7 +3,8 @@ const { pathname } = Astro.url;
 
 const segments = pathname
   .split('/')
-  .filter(Boolean);
+  .filter(Boolean)
+  .filter(segment => segment.toLowerCase() !== 'works'); // ← work を除外
 
 let pathSoFar = '';
 const breadcrumbs = segments.map((segment) => {
@@ -13,6 +14,7 @@ const breadcrumbs = segments.map((segment) => {
     url: pathSoFar
   };
 });
+
 ---
 
 <nav aria-label="パンくずリスト">

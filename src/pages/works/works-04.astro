@@ -2,6 +2,7 @@
 import HeaderWork from '../../components/HeaderWork.astro';
 import FooterWork from '../../components/FooterWork.astro';
 import Abtest from '../../components/Abtest.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
 ---
 
 <!DOCTYPE html>
@@ -51,13 +52,19 @@ import Abtest from '../../components/Abtest.astro';
 </head>
 
     <HeaderWork />
-    <main class="main">
+    <main class="main work-main">
+        <div class="bc_top">
+        <Breadcrumb />
+        </div>
         <div class="works_visual fade-in">
             <img src="../images/work_pc-04.jpg" alt="">
         </div>
+        <div class="bc_bottom">
+        <Breadcrumb />
+        </div>
     </main>
 
-    <div class="works-arrow">
+    <div class="works-arrow work-main">
         <div>
             <a href="works-03">&lt; prev</a>
             <a href="works-05">next &gt;</a>
