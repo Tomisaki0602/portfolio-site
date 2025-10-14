@@ -111,94 +111,8 @@ const news = latestFiles.map(file => {
             </div>
         </div>
 
-         <div class="news top-news" id="news">
-            <div class="news_title">
-            <h2 class="news_title-top">NEWS</h2>
-            <span class="news_title-bottom">お知らせ</span>
-            </div>
-            <ul>
-            {news.map(item => (
-                <li>
-                <span>{item.date}</span>
-                    <a href={`/news/${item.slug}`}>
-                        {item.title}
-                    </a>
-                </li>
-            ))}
-            </ul>
-            <a href="/news" class="news_back">一覧を見る<img src="/images/news/arrow_icon.svg"></a>
-        </div>
 
-
-        <div class="about" id="about">
-            <div class="about_title">
-            <h2 class="about_title-top">ABOUT</h2>
-            <span class="about_title-bottom">私について</span>
-            </div>
-            <div class="about_box">
-                <img src="/images/profile_1.jpg" alt=""class="fade-in">
-                <div class="about_box-text">
-                    <h3 class="about_box-text-name fade-in">冨崎 涼太</h3>
-                    <ul class="about_box-text-list">
-                        <div class="about-text fade-in">
-                            <span class="li-item">プロフィール</span>
-                            「ユーザー目線を大切にするデザイナー」を掲げ2023年にWEBデザイナーとして就職。
-                            2021年から医療系メディアを運営している株式会社アルゴリズムにてインターンをし2023年まで正社員として勤務、
-                            その後に2023年12月に現在所属の株式会社ノーマークにてデザイナーとして転職。
-                        </div>
-                        <li class="about_box-text-item fade-in"><span class="li-item">[生年月日]</span>2000年6月2日</li>
-                        <li class="about_box-text-item fade-in"><span class="li-item">[所属会社]</span>株式会社ノーマーク</li>
-                        <li class="about_box-text-item fade-in"><span class="li-item">[住所]</span>千葉県市川市</li>
-                        <li class="about_box-text-item fade-in"><span class="li-item">[Mail]</span>tomisaki0602@gmail.com</li>
-                        <li class="about_box-text-item fade-in"><span class="li-item">[Tel]</span>080-4322-1575</li>
-                    </ul>
-                    <a href="/form" class="about_link">Contact</a>
-                </div>
-                <img src="/images/about-bg.png" alt="" class="about-bg">
-            </div>
-        </div>
-
-        <div class="skills" id="skills">
-            <div class="skills_title">
-            <h2 class="skills_title-top">SKILLS</h2>
-            <span class="skills_title-bottom">スキル</span>
-            </div>
-
-        <div class="chart-container">
-            <div class="chart-box" id="radarBox">
-                <canvas id="radarChart"></canvas>
-            </div>
-            <div class="chart-box" id="barBox">
-                <canvas id="barChart"></canvas>
-            </div>
-        </div>
-        
-
-        <div class="policy" id="policy">
-        <div class="policy_title">
-        <h2 class="policy_title-top">POLICY</h2>
-        <span class="policy_title-bottom">大切にしていること</span>
-        </div>
-            <div class="skills_box">
-                <ul class="skills_box-list">
-                    <li class="skills_box-item fade-in">
-                            <img src="/images/policy01.webp" alt="">
-                    </li>
-                    <li class="skills_box-item fade-in">
-                            <img src="/images/policy02.webp" alt="">
-                    </li>
-                    <li class="skills_box-item fade-in">
-                            <img src="/images/policy03.webp" alt="">
-                    </li>
-                    <li class="skills_box-item fade-in">
-                            <img src="/images/policy04.webp" alt="">
-                    </li>
-                </ul>
-            </div>
-        </div>
-        </div>
-
-        <div class="works" id="works">
+                <div class="works" id="works">
             <div class="works_title">
             <h2 class="works_title-top">WORKS</h2>
             <span class="works_title-bottom">実績</span>
@@ -307,6 +221,75 @@ const news = latestFiles.map(file => {
                     </li> 
                 </ul>
             </div>
+        </div>
+
+
+        <div class="about" id="about">
+            <div class="about_title">
+            <h2 class="about_title-top">ABOUT</h2>
+            <span class="about_title-bottom">私について</span>
+            </div>
+            <div class="about_box">
+                <img src="/images/profile_1.jpg" alt=""class="fade-in">
+                <div class="about_box-text">
+                    <h3 class="about_box-text-name fade-in">冨崎 涼太</h3>
+                    <ul class="about_box-text-list">
+                        <div class="about-text fade-in">
+                            <span class="li-item">プロフィール</span>
+                            「ユーザー目線を大切にするデザイナー」を掲げ2023年にWEBデザイナーとして就職。
+                            2021年から医療系メディアを運営している株式会社アルゴリズムにてインターンをし2023年まで正社員として勤務、
+                            その後に2023年12月に現在所属の株式会社ノーマークにてデザイナーとして転職。
+                        </div>
+                        <li class="about_box-text-item fade-in"><span class="li-item">[生年月日]</span>2000年6月2日</li>
+                        <li class="about_box-text-item fade-in"><span class="li-item">[所属会社]</span>株式会社ノーマーク</li>
+                        <li class="about_box-text-item fade-in"><span class="li-item">[住所]</span>千葉県市川市</li>
+                        <li class="about_box-text-item fade-in"><span class="li-item">[Mail]</span>tomisaki0602@gmail.com</li>
+                        <li class="about_box-text-item fade-in"><span class="li-item">[Tel]</span>080-4322-1575</li>
+                    </ul>
+                    <a href="/form" class="about_link">Contact</a>
+                </div>
+                <img src="/images/about-bg.png" alt="" class="about-bg">
+            </div>
+        </div>
+
+        <div class="skills" id="skills">
+            <div class="skills_title">
+            <h2 class="skills_title-top">SKILLS</h2>
+            <span class="skills_title-bottom">スキル</span>
+            </div>
+
+        <div class="chart-container">
+            <div class="chart-box" id="radarBox">
+                <canvas id="radarChart"></canvas>
+            </div>
+            <div class="chart-box" id="barBox">
+                <canvas id="barChart"></canvas>
+            </div>
+        </div>
+        
+
+        <div class="policy" id="policy">
+        <div class="policy_title">
+        <h2 class="policy_title-top">POLICY</h2>
+        <span class="policy_title-bottom">大切にしていること</span>
+        </div>
+            <div class="skills_box">
+                <ul class="skills_box-list">
+                    <li class="skills_box-item fade-in">
+                            <img src="/images/policy01.webp" alt="">
+                    </li>
+                    <li class="skills_box-item fade-in">
+                            <img src="/images/policy02.webp" alt="">
+                    </li>
+                    <li class="skills_box-item fade-in">
+                            <img src="/images/policy03.webp" alt="">
+                    </li>
+                    <li class="skills_box-item fade-in">
+                            <img src="/images/policy04.webp" alt="">
+                    </li>
+                </ul>
+            </div>
+        </div>
         </div>
 
         <div class="pf_btn fade-in">
