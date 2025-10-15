@@ -76,12 +76,46 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
         <h2><small>ニトリのアプリをリデザイン</small>
             <br>通販アプリ「ニトリ」リデザイン</h2>
         <span class="work_page-subtitle">Application Design</span>
+
+        <ul class="work-url">
+                <li><span>[制作期間]</span>2025.10.04</li>
+                <li><span>[テーマ]</span>既存アプリのリデザイン</li>
+                <li><span>[ターゲット]</span>家具の購入を検討中の男性</li>
+                <li><span>[PJ人数]</span>1人(自主制作のため)</li>
+                <li><span>[使用ツール]</span>Illustrator / Photoshop</li>
+                <li><span>[PDF URL]</span><a href="https://x.gd/OFPBV">https://x.gd/OFPBV</a></li>
+        </ul>
+        <div class="line"></div>
+        <h3 class="work_about">アプリ概要</h3>
+
         <p>
             本プロジェクトは、<strong>個人的に課題を設定して取り組んだ自主制作</strong>です。ユーザー獲得を目的としたアプリ改善をテーマに、まずはリサーチに
             よって様々な問題点を洗い出しました。その上で、<strong>特にユーザー体験の入口となるホーム画面のUIを重点的に改善</strong>し、直感的で使いやすいデ
             ザインを意識しています。
         </p>
+        <section class="section site_detail">
+            <div class="work_detail">
+            <div class="detail">
+            <h4>コンセプト</h4>
+            <h3>「欲しいを見つけるアプリ」</h3>
+            <p class="text">
+            コンセプトである<strong>「すぐ見つかる」を体現するため、情報をシンプルかつ直感的に整理</strong>しました。
+            視認性を高める整列デザインや、ピクトグラムを活用したアイコンを取り入れユーザーがスムーズ
+            に目的の情報へたどり着けるUIを目指しています。
+            </p>
+            </div>
     </div>
+
+    <div class="content">
+    <div class="line-about"></div>
+    </div>
+    <picture>
+    <source media="(max-width: 820px)" srcset="/images/work_about06.png">
+    <img src="/images/work_about06.png" alt="画像" class="image">
+    </picture>
+    </section>
+
+
     <div class="work-img row-img app-img">
         <img src="../images/nitori-01.jpg" alt="" class="fade-in">
         <img src="../images/nitori-02.jpg" alt="" class="fade-in">
@@ -90,11 +124,8 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
         <img src="../images/nitori-05.jpg" alt="" class="fade-in">
         <img src="../images/nitori-06.jpg" alt="" class="fade-in">
     </div>
-    <div class="line"></div>
-    <div class="work-url">
-        <div><span>制作日:</span>2025.09.20 ~ 09.25</div>
-        <div><span>企画書:</span><a href="https://drive.google.com/file/d/1pSQBpHKJwCl_rzzhsGub-pAgq4OwN3yr/view?usp=sharing">https://x.gd/OFPBV</a></div>
-    </div>
+</div>
+    </main>
     <FooterWork />
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="../js/text.js" type="module"></script>
@@ -159,6 +190,52 @@ function scroll_top() {
                 drawerBtn.classList.remove('active-btn');
             });
         });
+    </script>
+     <script>
+const sections = document.querySelectorAll('.section');
+
+function handleScroll() {
+  const triggerBottom = window.innerHeight * 0.8;
+
+  sections.forEach(section => {
+    const sectionTop = section.getBoundingClientRect().top;
+    const img = section.querySelector('.image');
+    const line = section.querySelector('.line-about');
+    const details = section.querySelectorAll('.work_detail .detail');
+
+    if (sectionTop < triggerBottom && !section.classList.contains('animated')) {
+      section.classList.add('animated');
+
+      // 画面幅チェック
+      const isSmall = window.innerWidth <= 650;
+
+      // 1. 画像フェードイン
+      if (img) img.style.opacity = 1;
+
+      if (!isSmall && line) {
+        // 2. 線を伸ばす（650px以上のみ）
+        setTimeout(() => {
+          line.style.transform = 'scaleX(1)';
+        }, 500);
+      }
+
+      // 3. 文章は常に順番にフェードイン
+      setTimeout(() => {
+        details.forEach((detail, index) => {
+          setTimeout(() => {
+            detail.style.opacity = 1;
+            detail.style.transform = 'translateX(0)';
+          }, index * 300);
+        });
+      }, isSmall ? 500 : 1600); // 線が無い場合は少し早めに
+    }
+  });
+}
+
+window.addEventListener('scroll', handleScroll);
+window.addEventListener('resize', handleScroll);
+handleScroll();
+
     </script>
 </body>
 </html>

@@ -74,16 +74,53 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
         <h2><small>賢い大人のためのモニターサイト</small>
             <br>スマモニ</h2>
         <span class="work_page-subtitle">WEB Design</span>
+
+        <ul class="work-url">
+                <li><span>[制作期間]</span>2023.12.15~2025.8.25</li>
+                <li><span>[テーマ]</span>スマモニの改修</li>
+                <li><span>[ターゲット]</span>20~40代 女性</li>
+                <li><span>[PJ人数]</span>2人(デザイン/コーディングを担当)</li>
+                <li><span>[使用ツール]</span>Illustrator / Photoshop / figma / VScode(html/css/js)</li>
+                <li><span>[サイトURL]</span><a href="https://sm-mn.jp/lp/">https://sm-mn.jp/lp/</a></li>
+        </ul>
+        <div class="line"></div>
+        <h3 class="work_about">サイト概要</h3>
         <p>
-            株式会社ノーマークにてデザイン部分を制作を担当しました。
-            <strong>他と同様スマモニのLPやユーザログイン後のページのデザイン改修</strong>をし、
-            新規ユーザが登録しやすいような雰囲気作りのために合わせて様々なデザ
-            インを刷新しています。<strong>主にサイトで使用するバナー/LPマイページの画面
-            のデザイン改修/html,css,jsを使用したコーディング(時にはphp部
-            分簡単な部分の追記など)を行なっています。</strong>入社してから現在まで改修や
-            analyticsなどを使った施策を行なってきました。
+            こちらも同じくデザイン、一部コーディングを担当。他同様スマモニのLPやログイン
+            後ページの改修を行い、新規ユーザーが登録しやすい雰囲気作りのためデザインを刷
+            新。主にサイトバナーやLP・マイページのデザイン改修、HTML/CSS/JSによるコーデ
+            ィング、<strong>必要に応じてPHPの簡単な追記も対応。</strong>
         </p>
+        <section class="section site_detail">
+            <div class="work_detail">
+            <div class="detail">
+            <h4>やったこと</h4>
+            <h3>「既存デザインの改修」</h3>
+            <p class="text">
+            既存サイトのデザイン改修を担当。GitHubでコード管理しつつ、HTML/CSS/JavaScriptで実装。<strong>操作性・視認
+            性の向上とデザインの統一感、ユーザー体験の改善</strong>に取り組んだ。
+            </p>
+            </div>
+            <div class="detail">
+            <h4>施策</h4>
+            <h3>「探索行動の設定」</h3>
+            <p class="text">
+            Analyticsのデータを比較し、数値の変動を確認。素人レベルではありますが、
+            <strong>探索機能を用いてユーザーの会員登録状況を追えるよう設定。</strong>
+            </p>
+            <img src="/images/work_about05-2.png" alt="clarity">
+        </div>
     </div>
+
+    <div class="content">
+    <div class="line-about"></div>
+    </div>
+    <picture>
+    <source media="(max-width: 820px)" srcset="/images/work_about05.png">
+    <img src="/images/work_about05.png" alt="画像" class="image">
+    </picture>
+    </section>
+
     <div class="tabs">
         <button class="tab active" data-tab="tab1">Design 1</button>
         <button class="tab" data-tab="tab2">Design 2</button>
@@ -108,12 +145,8 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
                 <img src="../images/sp-img08.webp" alt="" class="fade-in">
         </div>
     </div>
-
-    <div class="line"></div>
-    <div class="work-url">
-        <div><span>制作日:</span>2023.12.15~2025.8.25</div>
-        <div><span>サイトURL:</span><a href="https://sm-mn.jp/lp/">https://sm-mn.jp/lp/</a></div>
-    </div>
+</div>
+    </main>
     <FooterWork />
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="../js/text.js" type="module"></script>
@@ -179,6 +212,52 @@ function scroll_top() {
                 drawerBtn.classList.remove('active-btn');
             });
         });
+    </script>
+     <script>
+const sections = document.querySelectorAll('.section');
+
+function handleScroll() {
+  const triggerBottom = window.innerHeight * 0.8;
+
+  sections.forEach(section => {
+    const sectionTop = section.getBoundingClientRect().top;
+    const img = section.querySelector('.image');
+    const line = section.querySelector('.line-about');
+    const details = section.querySelectorAll('.work_detail .detail');
+
+    if (sectionTop < triggerBottom && !section.classList.contains('animated')) {
+      section.classList.add('animated');
+
+      // 画面幅チェック
+      const isSmall = window.innerWidth <= 650;
+
+      // 1. 画像フェードイン
+      if (img) img.style.opacity = 1;
+
+      if (!isSmall && line) {
+        // 2. 線を伸ばす（650px以上のみ）
+        setTimeout(() => {
+          line.style.transform = 'scaleX(1)';
+        }, 500);
+      }
+
+      // 3. 文章は常に順番にフェードイン
+      setTimeout(() => {
+        details.forEach((detail, index) => {
+          setTimeout(() => {
+            detail.style.opacity = 1;
+            detail.style.transform = 'translateX(0)';
+          }, index * 300);
+        });
+      }, isSmall ? 500 : 1600); // 線が無い場合は少し早めに
+    }
+  });
+}
+
+window.addEventListener('scroll', handleScroll);
+window.addEventListener('resize', handleScroll);
+handleScroll();
+
     </script>
 </body>
 </html>

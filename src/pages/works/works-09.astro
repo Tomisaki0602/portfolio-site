@@ -61,7 +61,6 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
     <div class="bc_bottom">
     <Breadcrumb />
     </div>
-    </main>
 
     <div class="works-arrow">
         <div>
@@ -74,12 +73,19 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
         <h2><small>制作物</small>
             <br>株式会社ノーマーク</h2>
         <span class="work_page-subtitle">Other Design</span>
-        <h3>シンプルでわかりやすく</h3>
+        <ul class="work-url">
+            <li><span>[制作期間]</span>2023.12 ~ 2025.10</li>
+            <li><span>[テーマ]</span>ブランディング</li>
+            <li><span>[PJ人数]</span>1人(デザイン全般)</li>
+            <li><span>[使用ツール]</span>Illustrator / Photoshop</li>
+        </ul>
+        <div class="line"></div>
+        <h3 class="work_about">概要</h3>
+        <h3 class="work-consept"><span class="consept-span">CONSEPT -</span>「シンプルでわかりやすく」</h3>
         <p>
            社内外で目にする機会の多いカレンダーや年賀メールを対象に、印象に残りや
            すく会社の雰囲気にも合うデザインを追求しました。「シンプルでわかりやすく」を軸に、誰にとっても心地よいコミュニケーション
            ツールとなることを意識しています。
-
         </p>
     </div>
     <div class="work-img row-img">
@@ -87,10 +93,7 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
         <img src="../images/nmrk-2.webp" alt="" class="fade-in">
         <img src="../images/nmrk-3.webp" alt="" class="fade-in">
     </div>
-    <div class="line"></div>
-     <div class="work-url">
-        <div><span>制作日:</span>2023.12 ~ 25.10</div>
-    </div>
+</main>
     <FooterWork />
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="/js/text.js" type="module"></script>

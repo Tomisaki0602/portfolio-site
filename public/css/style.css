@@ -1276,6 +1276,11 @@ img::selection {
   display: block;
 }
 
+.app-img{
+  margin-top: 30px;
+  width: 100%;;
+}
+
 @media screen and (max-width: 480px) {
   .app-img {
     width: 100% !important;
@@ -1994,6 +1999,11 @@ ul.bread-flex a{
   margin-left: -13px;
   font-size: 24px;
 }
+.detail img{
+  width: 100%;
+  max-width: 450px;
+  margin-top: 20px;
+}
 
 
 .line-about {
@@ -2016,7 +2026,15 @@ picture:has(.image){
   opacity: 0;
   transition: opacity 1s ease;
 }
-
+.work-consept{
+  margin: 0;
+}
+.consept-span {
+    position: relative;
+    font-size: 14px;
+    vertical-align: middle;
+    bottom: 2px;
+}
 @media screen and (max-width:820px){
    .section .image{
     width: 100%;
