@@ -2077,3 +2077,25 @@ picture:has(.image){
 .app .detail h3{
   margin-left: 0px !important;
 }
+
+
+/* モーダル用 */
+.img-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.img-modal img {
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.img-modal.active {
+  display: flex;
+  cursor: zoom-out;
+}
