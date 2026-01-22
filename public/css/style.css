@@ -2110,6 +2110,11 @@ picture:has(.image){
   cursor: pointer;
   padding: 20px;
 }
+@media screen and (max-width:500px){
+  .modal-nav{
+    top:70%;
+  }
+}
 
 .modal-nav.prev { left: 20px; }
 .modal-nav.next { right: 20px; }
