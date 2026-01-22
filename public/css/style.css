@@ -2101,7 +2101,7 @@ picture:has(.image){
 
 .modal-nav {
   position: absolute;
-  top: 50%;
+  top: 70%;
   transform: translateY(-50%);
   font-size: 48px;
   color: #fff;
@@ -2110,11 +2110,7 @@ picture:has(.image){
   cursor: pointer;
   padding: 20px;
 }
-@media screen and (max-width:500px){
-  .modal-nav{
-    top:70% !important;
-  }
-}
+
 
 .modal-nav.prev { left: 20px; }
 .modal-nav.next { right: 20px; }
