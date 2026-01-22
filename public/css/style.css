@@ -2112,7 +2112,7 @@ picture:has(.image){
 }
 @media screen and (max-width:500px){
   .modal-nav{
-    top:70%;
+    top:70% !important;
   }
 }
 
