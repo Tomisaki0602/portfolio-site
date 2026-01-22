@@ -2091,7 +2091,7 @@ picture:has(.image){
 }
 
 .img-modal img {
-  max-width: 90%;
+  max-width: 100%;
   max-height: 90%;
 }
 
