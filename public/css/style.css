@@ -2101,7 +2101,7 @@ picture:has(.image){
 
 .modal-nav {
   position: absolute;
-  top: 70%;
+  top: 75%;
   transform: translateY(-50%);
   font-size: 48px;
   color: #fff;
