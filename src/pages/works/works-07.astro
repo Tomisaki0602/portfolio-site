@@ -128,6 +128,62 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="/js/text.js" type="module"></script>
     <script src="/js/scroll.js" type="module"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const images = [...document.querySelectorAll('.work-img img')];
+  const modal = document.getElementById('img-modal');
+  const modalImg = document.getElementById('modal-img');
+  const prevBtn = document.querySelector('.modal-nav.prev');
+  const nextBtn = document.querySelector('.modal-nav.next');
+
+  let currentIndex = 0;
+  let startX = 0;
+
+  function showImage(index) {
+    currentIndex = (index + images.length) % images.length;
+    modalImg.src = images[currentIndex].src;
+  }
+
+  images.forEach((img, index) => {
+    img.addEventListener('click', () => {
+      showImage(index);
+      modal.classList.add('active');
+    });
+  });
+
+  prevBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    showImage(currentIndex - 1);
+  });
+
+  nextBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    showImage(currentIndex + 1);
+  });
+
+  // スワイプ開始
+  modal.addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX;
+  });
+
+  // スワイプ終了
+  modal.addEventListener('touchend', e => {
+    const endX = e.changedTouches[0].clientX;
+    const diff = startX - endX;
+
+    if (Math.abs(diff) > 50) {
+      diff > 0 ? showImage(currentIndex + 1) : showImage(currentIndex - 1);
+    }
+  });
+
+  // 背景クリックで閉じる
+  modal.addEventListener('click', () => {
+    modal.classList.remove('active');
+  });
+});
+</script>
+
     <script>
         // フェードイン
 function showElementAnimation() {
